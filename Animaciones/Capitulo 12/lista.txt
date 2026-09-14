@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s01_problema/1080p60/ProblemaEstimacion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s02_ortogonalidad/1080p60/Ortogonalidad.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s03_fir/1080p60/WienerFIR.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s04_no_causal/1080p60/NoCausal.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s05_senal_en_ruido/1080p60/SenalEnRuido.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s06_deconvolucion/1080p60/Deconvolucion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s07_causal/1080p60/WienerCausal.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 12/media/videos/s08_kalman/1080p60/Kalman.mp4'

@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s01_ensemble/1080p60/Ensemble.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s02_momentos/1080p60/Momentos.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s03_estacionariedad/1080p60/Estacionariedad.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s04_oscilador/1080p60/Oscilador.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s05_autocorrelacion/1080p60/Autocorrelacion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s06_ergodicidad/1080p60/Ergodicidad.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s07_prediccion/1080p60/Prediccion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 10/media/videos/s08_filtrado/1080p60/Filtrado.mp4'

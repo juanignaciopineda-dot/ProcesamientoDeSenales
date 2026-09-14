@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s01_problema/1080p60/Problema.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s02_derivacion/1080p60/Derivacion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s03_desempeno/1080p60/Desempeno.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s04_filtro_adaptado/1080p60/FiltroAdaptado.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s05_por_que/1080p60/PorQueFunciona.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s06_coloreado/1080p60/RuidoColoreado.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s07_compresion/1080p60/CompresionPulso.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 13/media/videos/s08_antipodal/1080p60/OnOffAntipodal.mp4'

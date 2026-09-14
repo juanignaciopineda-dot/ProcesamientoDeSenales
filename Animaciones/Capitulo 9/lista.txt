@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s01_pam/1080p60/PAMenRuido.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s02_map/1080p60/ReglaMAP.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s03_errores/1080p60/Errores.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s04_medico/1080p60/TestMedico.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s05_verosimilitud/1080p60/RazonVerosimilitud.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s06_neyman/1080p60/NeymanPearson.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s07_roc/1080p60/CurvaROC.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 9/media/videos/s08_riesgo/1080p60/RiesgoMinimo.mp4'

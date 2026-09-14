@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s01_bayes/1080p60/Bayes.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s02_cdf_pdf/1080p60/CDFyPDF.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s03_media_varianza/1080p60/MediaYVarianza.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s04_chebyshev/1080p60/Chebyshev.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s05_torre/1080p60/EsperanzaIterada.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s06_conjunta/1080p60/Conjunta.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s07_correlacion/1080p60/Correlacion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 7/media/videos/s08_vectorial/1080p60/Vectorial.mp4'

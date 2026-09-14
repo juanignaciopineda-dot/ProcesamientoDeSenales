@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s01_mmse/1080p60/MMSE.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s02_condicional/1080p60/Condicional.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s03_estimador/1080p60/Estimador.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s04_lmmse/1080p60/LMMSE.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s05_rho/1080p60/Correlacion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s06_ortogonalidad/1080p60/Ortogonalidad.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s07_lineal_o_no/1080p60/LinealONo.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 8/media/videos/s08_multiples/1080p60/Multiples.mp4'

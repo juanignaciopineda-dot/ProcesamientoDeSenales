@@ -1,0 +1,8 @@
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s01_problema/1080p60/Problema.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s02_pasabanda/1080p60/PSDPasabanda.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s03_dualidad/1080p60/Dualidad.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s04_bochner/1080p60/Bochner.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s05_blanco_coloreado/1080p60/BlancoColoreado.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s06_periodograma/1080p60/Periodograma.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s07_resolucion/1080p60/Resolucion.mp4'
+file 'C:/Users/Nacho/Documents/Animaciones/Capitulo 11/media/videos/s08_modelador/1080p60/ModeladorBlanqueador.mp4'
