@@ -239,6 +239,9 @@ Y ahí está el resultado central de toda la sección: el coeficiente de correla
 
 ## Ejercicios Propuestos 
 
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 7 solucionario]]**.
+
 1. Dos números $x$ e $y$ son seleccionados de manera aleatoria e independiente entre el intervalo $[0;1]$. Definimos los eventos $A, B, C\ y\ D$ de la siguiente manera. 
    ![[Pasted image 20260810105718.png]]
    
@@ -399,6 +402,9 @@ Este sistema es exactamente lo que vamos a resolver (bajo otro nombre) en cualqu
 >Qué pasa *exactamente* con mediciones redundantes (la matriz se vuelve casi singular, los pesos individuales explotan con signos opuestos, pero el error se mantiene sano), más el hecho de que un MMSE negativo delata correlaciones imposibles, está resuelto con números en [[PROCESAMIENTO DE SEÑALES - Cap 8 en profundidad]] (Parte 2.5). La parte de cómo resolver este sistema en la práctica (Cholesky, número de condición, regularización) está en la Parte 3.
 
 ## Ejercicios Propuestos
+
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 8 solucionario]]**.
 
 1. Para cada uno de los siguientes puntos, indique si la afirmación dada es verdadera o falsa. Para una afirmación verdadera, dé una explicación breve pero convincente; para una falsa, dé un contraejemplo o una explicación convincente.
 
@@ -589,6 +595,9 @@ que depende de los costos además de las probabilidades a priori.
 >La derivación de esa fórmula del umbral, paso por paso (incluido el supuesto implícito de que equivocarse cuesta más que acertar), está en [[PROCESAMIENTO DE SEÑALES - Cap 9 en profundidad]] (Parte 1.5). Y un ejemplo con números que muestra por qué **minimizar el riesgo no es lo mismo que minimizar $P_e$** cuando los costos difieren está en la Parte 2.3.
 
 ## Ejercicios Propuestos
+
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 9 solucionario]]**.
 
 1. Una estudiante está rindiendo un examen y es igualmente probable que no haya estudiado (hipótesis $H_0$) o que sí haya estudiado (hipótesis $H_1$).
 
@@ -946,6 +955,9 @@ Esa expresión $S_{yy}=|H|^2S_{xx}$ debería sonarte muchísimo: es exactamente 
 
 ## Ejercicios Propuestos
 
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 10 solucionario]]**.
+
 1. Para la onda telegráfica aleatoria, evalúe (como función de $T$ para $T>0$) la probabilidad condicional de que $X(t_0+T)=+1$, dado que $X(t_0)=+1$. ¿Para qué rango de $T>0$ esta probabilidad condicional es mayor que la probabilidad condicional de que $X(t_0+T)=-1$? Si, para un $T>0$ dado, usted predijera que $X(t_0+T)=+1$ dado que $X(t_0)=+1$, ¿cuál sería la probabilidad de que su predicción sea incorrecta? ¿Cómo varía esta probabilidad con $T$, y le parece razonable?
 
 2. Como se muestra en la figura, un proceso aleatorio particular $X(t)$ está representado por un espacio muestral con tres funciones del tiempo posibles como resultados. Las probabilidades de los tres resultados $x_1(t)$, $x_2(t)$ y $x_3(t)$ son
@@ -1276,6 +1288,9 @@ O sea: **el teorema del muestreo vale también para procesos aleatorios**, enten
 > *Pista: acordate de que necesitás $|H_w|^2=\sigma_w^2/S_{xx}$, y que la ambigüedad del pasa-todo es justamente lo que hay que discutir en la última parte.*
 
 ## Ejercicios Propuestos
+
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 11 solucionario]]**.
 
 1. a) Suponga que $x(\cdot)$ e $y(\cdot)$ son procesos aleatorios independientes, y cada uno es WSS. Muestre que $z(t)=x(t)y(t)$ también es WSS, y escriba su PSD en términos de las PSD $S_{xx}(j\omega)$ y $S_{yy}(j\omega)$.
    b) Suponga que $x(t)$ es un proceso WSS e $y(t)=x(t-1)$. ¿Es $C_{yx}(1)\geq C_{yx}(\tau)$ para todo $\tau$? Exprese $S_{yx}(j\omega)$ en términos de $S_{xx}(j\omega)$.
@@ -1679,6 +1694,9 @@ $$H(s)=\frac{1}{F(s)}\big[e^{sT}F(s)\big]_+$$
 >La única diferencia conceptual es que en CT el ruido blanco es una idealización con potencia infinita, mientras que en DT es perfectamente concreto. Por eso el libro (y este apunte) desarrollan todo en DT.
 
 ## Ejercicios Propuestos
+
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 12 solucionario]]**.
 
 1. Una cierta señal WSS de media nula $y(t)$ con autocorrelación $R_{yy}(\tau)$ y PSD correspondiente $S_{yy}(j\omega)$ se transmite a través de un canal que tiene una ganancia fija pero aleatoria $G$, cuya media y varianza son $\mu_G$ y $\sigma_G^2$ respectivamente. Debido al ruido en el receptor, la señal recibida $x(t)$ toma la forma
    $$x(t)=G\ y(t)+w(t)$$
@@ -2103,6 +2121,9 @@ Antipodal **duplica el argumento de la $Q$**, lo que equivale a **cuadruplicar e
 > **d)** ¿Su elección de $c[n]$ en c), con una elección apropiada de $\gamma$, necesariamente minimiza la probabilidad de error? Explique, y si su respuesta es afirmativa, determine $\gamma$ en términos de los parámetros dados.
 
 ## Ejercicios Propuestos
+
+> [!tip] Solucionario
+> Las resoluciones paso a paso de estos ejercicios —con verificación numérica y los gráficos que piden los enunciados— están en **[[PROCESAMIENTO DE SEÑALES - Cap 13 solucionario]]**.
 
 1. Este problema se refiere al escenario descrito en el Ejemplo 13.1 del libro (dos densidades condicionales uniformes, con $P(H_0)=\tfrac34$ y $P(H_1)=\tfrac14$).
 

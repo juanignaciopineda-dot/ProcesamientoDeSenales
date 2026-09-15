@@ -15,7 +15,9 @@ Libros/           Bibliografía en PDF
 
 `Apuntes/` contiene el apunte general (`PROCESAMIENTO DE SEÑALES.md`) más un
 apunte "en profundidad" por capítulo, con las demostraciones e imágenes que
-en el apunte general quedan solo enunciadas. Pensados para abrir como vault
+en el apunte general quedan solo enunciadas, y un solucionario por capítulo
+(`... - Cap N solucionario.md`) con los Ejercicios Propuestos resueltos paso a
+paso, verificados numéricamente. Pensados para abrir como vault
 de [Obsidian](https://obsidian.md/) (usan sintaxis `[[wikilinks]]` y
 `![[imagen]]`).
 
