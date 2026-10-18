@@ -4,7 +4,7 @@ Capítulo 7 (Modelos probabilísticos), episodio 7 de 7. Duración objetivo: ~10
 Texto tomado de `../guion_base.md` (escenas 25 a 29), más un gancho y un cierre nuevos.
 Es el último episodio del capítulo: su cierre anuncia el E1 del capítulo 8.
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 10:25, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/-_chXp6KYSo). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026: se regenera con `python render.py <carpeta> --calidad qh`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 10:25, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/-_chXp6KYSo). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «¿Y si te digo que cuánto se parecen dos variables aleatorias se mide, literalmente, con el coseno de un ángulo?…» (ya no da por sabido el «coeficiente de correlación»: ningún episodio anterior lo presenta).

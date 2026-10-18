@@ -4,7 +4,7 @@ Capítulo 7 (Modelos probabilísticos), episodio 5 de 7. Duración objetivo: ~10
 Texto tomado de `../guion_base.md` (escenas 17 a 20), más un gancho y un cierre nuevos.
 Ejemplos que vuelven con el mismo dibujo: el canal que confunde bits (0,7 / 0,3 y 10 % de error, como en la escena 08 del E2) y la altura (40 % hombres de 175 cm, 60 % mujeres de 162 cm).
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 9:01, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/yOGhkgYWskI). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026: se regenera con `python render.py <carpeta> --calidad qh`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 9:01, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/yOGhkgYWskI). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
 
 Texto nuevo (marcado con ⭐; aprobado por el usuario):
 - ⭐ Escena 01 (gancho): «Se recibe un uno. ¿Qué se envió? Una tabla de cuatro números lo responde…».

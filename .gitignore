@@ -1,0 +1,22 @@
+# Obsidian: configuración local del vault
+.obsidian/
+
+# Animaciones: artefactos de render (pesados, regenerables)
+Animaciones/**/media/*
+Animaciones/**/salida/
+Animaciones/**/__pycache__/
+Animaciones/**/*.mp3
+# ...salvo la caché de voz de cada episodio: va al repo para que el vídeo se
+# vuelva a armar idéntico (la voz de Azure no se sintetiza dos veces igual).
+!Animaciones/**/media/voiceovers/
+!Animaciones/**/media/voiceovers/*.mp3
+Animaciones/**/lista.txt
+Animaciones/**/render.log
+Animaciones/voces_prueba/*.mp3
+Animaciones/voces_prueba/nombres/
+Animaciones/voces_prueba/anglicismos/
+Animaciones/sfx/
+Animaciones/musica/
+
+# Animaciones: clave de Azure Speech (nunca al repo)
+Animaciones/.env

@@ -1,0 +1,13 @@
+# Versiones con las que se renderizaron los vídeos subidos (Python 3.12).
+# Instalar: python -m pip install -r requirements.txt
+# Además hacen falta ffmpeg (winget install Gyan.FFmpeg) y MiKTeX (LaTeX).
+manim==0.21.0
+ManimPango==0.6.1
+manim-voiceover==0.4.0
+edge-tts==7.2.8
+azure-cognitiveservices-speech==1.52.0
+python-dotenv==1.2.3
+numpy==2.4.6
+scipy==1.18.1
+mutagen==1.48.1
+pydub==0.25.1

@@ -3,7 +3,7 @@
 Capítulo 7 (Modelos probabilísticos), episodio 4 de 7. Duración objetivo: ~10 min.
 Texto tomado de `../guion_base.md` (escenas 13 a 16), más un gancho y un cierre nuevos.
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 9:04, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/tkpbJTO0JOo). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026: se regenera con `python render.py <carpeta> --calidad qh`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 9:04, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/tkpbJTO0JOo). Lo subió el usuario sin el visto bueno que figuraba pendiente en este estado (texto ⭐ / mp4 / pronunciaciones): la aprobación queda en su revisión antes de publicarlo. Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Un dado nunca saca tres coma cinco…».

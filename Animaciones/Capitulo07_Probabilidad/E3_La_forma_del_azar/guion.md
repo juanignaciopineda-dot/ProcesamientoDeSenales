@@ -4,7 +4,7 @@ Capítulo 7 (Modelos probabilísticos), episodio 3 de 7. Duración objetivo: ~10
 Texto tomado de `../guion_base.md` (escenas 09 a 12), más un gancho y un cierre nuevos.
 Idea fuerza: todo lo que se puede saber de una variable aleatoria cabe en una curva.
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 8:17, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/TVyUsukj6qU). Residuos limpiados el 17/10/2026: se regenera con `python render.py <carpeta> --calidad qh`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 8:17, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/TVyUsukj6qU). Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Un dado, un cable y un bit no se parecen en nada…».
