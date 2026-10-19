@@ -3,7 +3,7 @@
 Capítulo 8 (Estimación), episodio 1 de 5. Duración objetivo: ~10 min.
 Texto tomado de `../guion_base.md` (escenas 01 a 04), más un gancho y un cierre nuevos.
 
-**Estado:** **Subido a YouTube en privado** el 19/10/2026: render final 1080p60 de 9:07, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/uIbSQQLmxYQ). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E1`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (19/10/2026): render final 1080p60 de 9:07, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/uIbSQQLmxYQ). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E1`.
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Voy a tirar un dado y tú tienes que adivinar qué número sale. Y la mejor apuesta es tres coma cinco, pero un dado no puede sacar este número nunca.»

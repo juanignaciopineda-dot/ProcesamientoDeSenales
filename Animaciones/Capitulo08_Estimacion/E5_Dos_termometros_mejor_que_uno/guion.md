@@ -3,7 +3,7 @@
 Capítulo 8 (Estimación), episodio 5 de 5. Duración objetivo: ~10 min.
 Texto tomado de `../guion_base.md` (escenas 17 a 21), más un gancho y un cierre nuevos.
 
-**Estado:** **Subido a YouTube en privado** el 19/10/2026: render final 1080p60 de 10:43, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/YzbX-ba7RIg). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E5`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (19/10/2026): render final 1080p60 de 10:43, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/YzbX-ba7RIg). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E5`.
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Pones un segundo termómetro, peor que el primero. Puede no servir de nada, o puede dejar el error en cero. ¿De qué depende?»

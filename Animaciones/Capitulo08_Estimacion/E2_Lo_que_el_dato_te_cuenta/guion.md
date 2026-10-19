@@ -4,7 +4,7 @@ Capítulo 8 (Estimación), episodio 2 de 5. Duración objetivo: ~10 min.
 Texto tomado de `../guion_base.md` (escenas 05 a 08), más un gancho y un cierre nuevos.
 Ejemplos que vuelven con el mismo dibujo y los mismos números: la altura del Cap. 7 (40 % hombres de 175 cm, 60 % mujeres de 162 cm; 81,76 → 41,2 + 40,56) y el canal que confunde bits (0,7 / 0,3 y una de cada diez veces; tabla 0,63 · 0,07 · 0,03 · 0,27).
 
-**Estado:** **Subido a YouTube en privado** el 19/10/2026: render final 1080p60 de 9:10, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/CCC0y1jMOoM). Lo subió el usuario sin el visto bueno que figuraba pendiente (texto ⭐ / mp4). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E2`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (19/10/2026): render final 1080p60 de 9:10, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/CCC0y1jMOoM). Lo subió el usuario sin el visto bueno que figuraba pendiente (texto ⭐ / mp4). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E2`.
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Alguien entra por la puerta y tienes que adivinar su altura. Te dicen una sola cosa y tu error se reduce a la mitad…».

@@ -3,7 +3,7 @@
 Capítulo 8 (Estimación), episodio 3 de 5. Duración objetivo: ~10 min.
 Texto tomado de `../guion_base.md` (escenas 09 a 12), más un gancho y un cierre nuevos.
 
-**Estado:** **Subido a YouTube en privado** el 19/10/2026: render final 1080p60 de 9:38, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/ufFp3Hqbl-4). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E3`. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (19/10/2026): render final 1080p60 de 9:38, título buscable, descripción con el capítulo del libro y `capitulos.txt`, subtítulos, categoría Educación (https://youtu.be/ufFp3Hqbl-4). Residuos limpiados; la caché de voz original está en `media/voiceovers/`: se rehace igual con `python rehacer.py Capitulo08_Estimacion E3`.
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Un termómetro marca veintitrés grados y, aun así, la mejor apuesta para la temperatura real no es veintitrés, sino veintidós coma cuatro. ¿Por qué? Con una recta y unos pocos números te lo explico.»
