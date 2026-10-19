@@ -4,7 +4,7 @@ Capítulo 7 (Modelos probabilísticos), episodio 1 de 7. Duración objetivo: ~10
 Texto tomado de `../guion_base.md` (escenas 01 a 04), más un gancho y un cierre nuevos.
 Es el primer vídeo de la serie: abre con el repaso de ~3 min de Señales y Sistemas y de Probabilidad y Estadística.
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 7:22, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/6sebWkz3paI). Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (subido el 17/10/2026, público desde el 19/10): render final 1080p60 de 7:22, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/6sebWkz3paI). Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido.
 
 Texto nuevo, para revisar (marcado con ⭐):
 - ⭐ Escena 01 (gancho): «Esta señal puedes calcularla dentro de un año. Esta otra, ni dentro de un segundo…».

@@ -10,10 +10,13 @@ Las fórmulas NO van aquí: la narración del guion ya las escribe en palabras
 Aprobado tal cual, sin reemplazo: (todavía nada).
 Con fonemas (elegido de oído, voces_prueba/probar_fourier_ipa.py, variante 5): Fourier → «fu-ri-ér».
 Las grafías «Furiér» y «Fuhriér» se descartaron.
+Con fonemas (elegido de oído, voces_prueba/probar_be.py, variante 3): la letra «be» aislada → /ˈbe/.
+Con fonemas (elegido de oído, voces_prueba/probar_roc.py, variante 4): ROC → /ˈrok/ («curva rok»).
 
 Reemplazado (elegido de oído, voces_prueba/probar_bayes.py, variante 5): Bayes → «Báyes».
 Reemplazado (elegido de oído, voces_prueba/probar_bernoulli.py, variante 3): Bernoulli → «Bernulí».
 Reemplazado (elegido de oído, voces_prueba/probar_cauchy.py, variante 3): Cauchy-Schwarz → «Coshi-Shuarts».
+Reemplazado (elegido de oído, voces_prueba/probar_cu.py, variante 3): la letra «cu» (función Q) → «ku»; tal cual se oía «ce u».
 Narración (no reemplazo): «u y v» se escribe «la u y la ve» (voces_prueba/probar_u_ve.py, variante 2).
 
 Cambiar un reemplazo cambia el texto que se sintetiza: solo esas frases se
@@ -26,12 +29,15 @@ REEMPLAZOS: list[tuple[str, str]] = [
     (r"\bBayes\b", "Báyes"),   # variante 5 de voces_prueba/probar_bayes.py
     (r"\bBernoulli\b", "Bernulí"),   # variante 3 de voces_prueba/probar_bernoulli.py
     (r"\bCauchy-Schwarz\b", "Coshi-Shuarts"),   # variante 3 de voces_prueba/probar_cauchy.py
+    (r"\bcu\b", "ku"),   # la letra Q; variante 3 de voces_prueba/probar_cu.py
 ]
 
 # palabra -> fonemas IPA. La palabra queda igual en el texto (y en los límites
 # de palabra); solo Azure Speech la pronuncia así (edge-tts no acepta SSML).
 FONEMAS: dict[str, str] = {
     "Fourier": "fu.ɾiˈeɾ",   # variante 5 de voces_prueba/probar_fourier_ipa.py
+    "be": "ˈbe",   # la letra «be» aislada; variante 3 de voces_prueba/probar_be.py
+    "ROC": "ˈrok",   # «curva ROC»; variante 4 de voces_prueba/probar_roc.py
 }
 
 

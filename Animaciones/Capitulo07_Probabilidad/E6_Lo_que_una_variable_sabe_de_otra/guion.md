@@ -4,7 +4,7 @@ Capítulo 7 (Modelos probabilísticos), episodio 6 de 7. Duración objetivo: ~10
 Texto tomado de `../guion_base.md` (escenas 21 a 24), más un gancho y un cierre nuevos.
 Ejemplos que vuelven con el mismo dibujo: el canal que confunde bits (tabla 0,63 · 0,07 · 0,03 · 0,27; E[S] = 0,3, E[R] = 0,34) y el ejemplo 6, 4, 3 (el que se retoma en el E7). Paga la promesa de «las varianzas se suman» de la escena 16 (E4).
 
-**Estado:** **Subido a YouTube en privado** el 17/10/2026: render final 1080p60 de 8:53, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/MAd5jyBUiaM). Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido. **Falta**: publicarlo (lo hace el usuario).
+**Estado:** **Subido a YouTube y publicado** (subido el 17/10/2026, público desde el 19/10): render final 1080p60 de 8:53, con título, descripción con `capitulos.txt`, subtítulos `.srt`, categoría Educación y «no es para niños» (https://youtu.be/MAd5jyBUiaM). Residuos limpiados el 17/10/2026; se rehace con `python rehacer.py Capitulo07_Probabilidad`. La caché de voz versionada (`media/voiceovers/`) se volvió a sintetizar después de la subida: un render nuevo es reproducible, pero la voz puede diferir un poco de la del vídeo subido.
 
 Texto nuevo (marcado con ⭐, aprobado por el usuario):
 - ⭐ Escena 01 (gancho): «Toma dos variables en las que una es exactamente el cuadrado de la otra… ¿Cómo puede ser?» (adelanta el contraejemplo de la escena 11).
