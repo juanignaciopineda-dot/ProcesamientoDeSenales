@@ -423,9 +423,9 @@ $$R(\tau)=P\cos(\omega_0\tau)$$
 $$\boxed{\ b=0\ }$$
 
 **b)** Las ecuaciones normales $C_{XX}\mathbf a=\mathbf c_{XY}$, con $C_{XX}$ la covarianza de $(X(t_0),X(t_1))$ y $\mathbf c_{XY}$ las covarianzas cruzadas con $X(t_2)$ (covarianzas = correlaciones, porque las medias son cero):
-$$\begin{pmatrix}R(0) & R(t_0-t_1)\ R(t_1-t_0) & R(0)\end{pmatrix}\begin{pmatrix}a_0\a_1\end{pmatrix}=\begin{pmatrix}R(t_0-t_2)\R(t_1-t_2)\end{pmatrix}$$
+$$\begin{pmatrix}R(0) & R(t_0-t_1)\ R(t_1-t_0) & R(0)\end{pmatrix}\begin{pmatrix}a_0\\a_1\end{pmatrix}=\begin{pmatrix}R(t_0-t_2)\\R(t_1-t_2)\end{pmatrix}$$
 Sea $\alpha=\omega_0(t_1-t_0)$. Como $R(\tau)=P\cos(\omega_0\tau)$ es par, la matriz es $P\begin{pmatrix}1&\cos\alpha\\cos\alpha&1\end{pmatrix}$, y el vector del lado derecho es $P\begin{pmatrix}\cos(\omega_0(t_2-t_0))\\cos(\omega_0(t_2-t_1))\end{pmatrix}$ (coseno par). La potencia $P$ se cancela al invertir y multiplicar. Usando la fórmula de la inversa $2\times2$ dada, con $\det=1-\cos^2\alpha=\sin^2\alpha$:
-$$\begin{pmatrix}a_0\a_1\end{pmatrix}=\frac{1}{\sin^2\alpha}\begin{pmatrix}1&-\cos\alpha\-\cos\alpha&1\end{pmatrix}\begin{pmatrix}\cos\theta_0\\cos\theta_1\end{pmatrix},\qquad \theta_0=\omega_0(t_2-t_0),\ \theta_1=\omega_0(t_2-t_1)$$
+$$\begin{pmatrix}a_0\\a_1\end{pmatrix}=\frac{1}{\sin^2\alpha}\begin{pmatrix}1&-\cos\alpha\-\cos\alpha&1\end{pmatrix}\begin{pmatrix}\cos\theta_0\\cos\theta_1\end{pmatrix},\qquad \theta_0=\omega_0(t_2-t_0),\ \theta_1=\omega_0(t_2-t_1)$$
 Usando $\theta_0=\theta_1+\alpha$ y las identidades de suma de ángulos, los numeradores se simplifican notablemente ($\cos\theta_0-\cos\alpha\cos\theta_1=-\sin\alpha\sin\theta_1$, y de forma análoga para la otra fila) hasta quedar:
 $$\boxed{\ a_0 = \frac{\sin\big(\omega_0(t_1-t_2)\big)}{\sin\big(\omega_0(t_1-t_0)\big)}\ ,\qquad a_1 = \frac{\sin\big(\omega_0(t_2-t_0)\big)}{\sin\big(\omega_0(t_1-t_0)\big)}\ }$$
 (válido siempre que $\sin(\omega_0(t_1-t_0))\ne0$, es decir que $t_0$ y $t_1$ no estén separados por un múltiplo exacto de medio período).

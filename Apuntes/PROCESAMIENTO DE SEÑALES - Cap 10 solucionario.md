@@ -121,12 +121,12 @@ Otra vez cada resultado del experimento es una función determinística completa
 ###### **Resolución**
 Leyendo la figura en $t_1$, $t_2$ y $t_3$ para cada una de las cuatro realizaciones. Igual que en el Ejercicio 2, hay cruces (tres curvas pasan por $6$ en $t_1$ y tres por $4$ en $t_2$), así que cada curva se sigue por continuidad de la pendiente, empezando desde su etiqueta a la derecha:
 
-| Realización | $P$ | $w(t_1)$ | $w(t_2)$ | $w(t_3)$ |
-|---|---|---|---|---|
-| $w_1$ | $1/3$ | $6$ | $8$ | $9$ |
-| $w_2$ | $1/4$ | $6$ | $4$ | $6$ |
-| $w_3$ | $1/4$ | $2$ | $4$ | $4$ |
-| $w_4$ | $1/6$ | $6$ | $4$ | $2$ |
+| Realización | $P$   | $w(t_1)$ | $w(t_2)$ | $w(t_3)$ |
+| ----------- | ----- | -------- | -------- | -------- |
+| $w_1$       | $1/3$ | $6$      | $8$      | $9$      |
+| $w_2$       | $1/4$ | $6$      | $4$      | $6$      |
+| $w_3$       | $1/4$ | $2$      | $4$      | $4$      |
+| $w_4$       | $1/6$ | $6$      | $4$      | $2$      |
 
 ($w_3$ es la curva que sube empinada desde abajo, pasa por $4$ en $t_2$, hace el pico de $\approx7{,}5$ y baja a $4$ en $t_3$: en $t_1$ estaba en $2$. $w_4$ es la recta que baja $6\to4\to2$.)
 

@@ -11,22 +11,22 @@ El capítulo 13 junta pruebas de hipótesis (cap. 9) con estimación de señales
 ###### **Cómo leer esto**
 No hace falta ir en orden. Según lo que estés buscando:
 
-| Si querés… | Andá a |
-|---|---|
-| por qué $g=\sum r[n]s[n]$ alcanza (estadístico suficiente) | Parte 1.1 |
-| las fórmulas de $P_{FA}$, $P_M$ y la ROC del detector, paso a paso | Parte 1.2 |
-| qué quiere decir exactamente "decae más rápido que exponencialmente" | Parte 1.3 |
-| la ganancia del filtro adaptado frente a usar una sola muestra | Parte 1.4, 2.3 |
-| la derivación completa para ruido coloreado (blanquear + adaptado) | Parte 1.5 |
-| de dónde sale $P_e=Q(\|s_1-s_0\|/2\sigma)$ y las tres señalizaciones | Parte 1.6, 2.5 |
-| un detector completo armado con números | Parte 2.2 |
-| cuánto se pierde con un filtro que no es el adaptado | Parte 2.3 |
-| un sistema con ruido coloreado resuelto entero | Parte 2.4 |
-| Barker contra rectangular, con Monte Carlo del error de retardo | Parte 2.6 |
-| implementación causal, $\sigma^2$ desconocida, retardo desconocido | Parte 3.1 a 3.4 |
-| estimar el ruido coloreado en la práctica | Parte 3.5 |
-| geometría del espacio de señales y las conexiones con los demás capítulos | Parte 4 |
-| practicar | Parte 5 |
+| Si querés…                                                                | Andá a          |
+| ------------------------------------------------------------------------- | --------------- |
+| por qué $g=\sum r[n]s[n]$ alcanza (estadístico suficiente)                | Parte 1.1       |
+| las fórmulas de $P_{FA}$, $P_M$ y la ROC del detector, paso a paso        | Parte 1.2       |
+| qué quiere decir exactamente "decae más rápido que exponencialmente"      | Parte 1.3       |
+| la ganancia del filtro adaptado frente a usar una sola muestra            | Parte 1.4, 2.3  |
+| la derivación completa para ruido coloreado (blanquear + adaptado)        | Parte 1.5       |
+| de dónde sale $P_e=Q(\|s_1-s_0\|/2\sigma)$ y las tres señalizaciones      | Parte 1.6, 2.5  |
+| un detector completo armado con números                                   | Parte 2.2       |
+| cuánto se pierde con un filtro que no es el adaptado                      | Parte 2.3       |
+| un sistema con ruido coloreado resuelto entero                            | Parte 2.4       |
+| Barker contra rectangular, con Monte Carlo del error de retardo           | Parte 2.6       |
+| implementación causal, $\sigma^2$ desconocida, retardo desconocido        | Parte 3.1 a 3.4 |
+| estimar el ruido coloreado en la práctica                                 | Parte 3.5       |
+| geometría del espacio de señales y las conexiones con los demás capítulos | Parte 4         |
+| practicar                                                                 | Parte 5         |
 
 ---
 

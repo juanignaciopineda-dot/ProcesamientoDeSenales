@@ -11,19 +11,19 @@ El capítulo 10 del apunte principal arma bien la intuición: un proceso es un *
 ###### **Cómo leer esto**
 No hace falta ir en orden. Según lo que estés buscando:
 
-| Si querés… | Andá a |
-|---|---|
-| ver por qué SSS $\Rightarrow$ WSS, con un contraejemplo del recíproco | Parte 1.1 |
-| la demostración de $\lvert C_{xx}(\tau)\rvert\leq C_{xx}(0)$ hecha desde cero | Parte 1.2 |
-| el paso de rigor que falta en "filtrar un WSS da un WSS" | Parte 1.3 |
-| la cuenta completa del criterio de ergodicidad en media | Parte 1.4 |
-| la autocorrelación de la onda telegráfica derivada entera | Parte 2.1 |
-| predicción lineal y filtrado LTI con números | Parte 2.2 y 2.3 |
-| por qué "tenés menos muestras de las que creés" | Parte 3.1 |
-| estimador sesgado vs insesgado de $R_{xx}[m]$ | Parte 3.2 |
-| simular un proceso con una autocorrelación dada | Parte 3.3 |
-| conectar el capítulo con el 7, el 8, el 11 y el 12 | Parte 4 |
-| practicar | Parte 5 |
+| Si querés…                                                                    | Andá a          |
+| ----------------------------------------------------------------------------- | --------------- |
+| ver por qué SSS $\Rightarrow$ WSS, con un contraejemplo del recíproco         | Parte 1.1       |
+| la demostración de $\lvert C_{xx}(\tau)\rvert\leq C_{xx}(0)$ hecha desde cero | Parte 1.2       |
+| el paso de rigor que falta en "filtrar un WSS da un WSS"                      | Parte 1.3       |
+| la cuenta completa del criterio de ergodicidad en media                       | Parte 1.4       |
+| la autocorrelación de la onda telegráfica derivada entera                     | Parte 2.1       |
+| predicción lineal y filtrado LTI con números                                  | Parte 2.2 y 2.3 |
+| por qué "tenés menos muestras de las que creés"                               | Parte 3.1       |
+| estimador sesgado vs insesgado de $R_{xx}[m]$                                 | Parte 3.2       |
+| simular un proceso con una autocorrelación dada                               | Parte 3.3       |
+| conectar el capítulo con el 7, el 8, el 11 y el 12                            | Parte 4         |
+| practicar                                                                     | Parte 5         |
 
 ---
 

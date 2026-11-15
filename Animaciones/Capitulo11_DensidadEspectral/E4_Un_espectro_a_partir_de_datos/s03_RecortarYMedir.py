@@ -1,0 +1,97 @@
+"""Escena 03 — Recortar la grabación a una ventana y definir el periodograma."""
+from comun.escena import *
+
+TIEMPOS = [x - 8 for x in cambios_tel(4, 16.0)]
+
+
+class RecortarYMedir(EscenaCurso):
+    ESCENA = "03"
+
+    def construct(self):
+        self.recorte()
+        self.parseval()
+        self.wait(1.0)
+        self.limpiar()
+
+    def recorte(self):
+        L = Lienzo(ancho=11.0, alto=1.8, t_rango=(-8, 8), v_max=1.4, centro=(0, 2.3))
+        onda = onda_tel(L, TIEMPOS, 1, SENAL, 4.0)
+        dentro = onda_tel(L, TIEMPOS, nivel_en(-5, TIEMPOS), SENAL, 4.5, t0=-5, t1=5)
+        marco = marco_t(L, -5, 5, 1.4, AMBAR, 0.12)
+        etq_m = MathTex("-T", color=AMBAR).scale(0.8).move_to(L.p(-5, -1.4) + DOWN * 0.38)
+        etq_p = MathTex("T", color=AMBAR).scale(0.8).move_to(L.p(5, -1.4) + DOWN * 0.38)
+        fou = caja("Fourier", MEDIDA, ancho=2.2).move_to([-3.2, -0.3, 0])
+        fl = flecha([-3.2, 0.95, 0], [-3.2, 0.2, 0], INK)
+        x1 = cruz(ROJO, 0.7).move_to([-3.2, 0.6, 0])
+        E = Lienzo(ancho=4.4, alto=2.2, t_rango=(-6, 6), v_max=1.2, centro=(3.6, -2.2))
+        eje = ejes_L(E, 0, 1.15)
+        pregunta = MathTex("?", color=AMBAR).scale(1.8).move_to([3.6, -1.9, 0])
+        mat = matraz(CIAN).scale(0.8).move_to([-0.3, -1.9, 0])
+        corr = etiqueta("+ corrección", AMBAR, 0.55).move_to([-0.3, -2.75, 0])
+        fl2 = flecha([-1.7, -0.5, 0], [1.4, -1.5, 0], INK)
+        tij = tijera(TXT).scale(0.5).move_to(L.p(-5, 1.4) + UP * 0.45)
+        ener = relleno_bajo(L, np.array([-5.0, 5.0]), np.array([1.0, 1.0]), VERDE, 0.3)
+        etq_e = etiqueta("energía finita", VERDE, 0.55).move_to([3.6, 0.3, 0])
+        ok = tilde(VERDE, 0.6).move_to([-3.2, 0.6, 0])
+        with self.narrar("b1"):
+            self.en("grabacion")
+            self.play(Create(L.base()), Create(onda), run_time=self.dur(0.9))
+            self.en("espectro")
+            self.play(Create(eje), run_time=0.4)
+            self.pop(pregunta)
+            self.en("idea")
+            self.play(FadeIn(mat), run_time=0.4)
+            self.en("correccion")
+            self.pop(corr)
+            self.en("entera")
+            self.play(FadeIn(fou), Create(fl), run_time=0.4)
+            self.pop(x1)
+            self.en("recorte")
+            self.pop(tij)
+            self.play(FadeIn(marco), onda.animate.set_stroke(opacity=0.25), FadeIn(dentro), run_time=self.dur(0.6))
+            self.en("ventana")
+            self.play(FadeIn(etq_m), FadeIn(etq_p), run_time=self.dur(0.4))
+            self.en("termina")
+            self.resaltar(marco, color=AMBAR)
+            self.en("energia")
+            self.play(FadeIn(ener), FadeIn(etq_e), run_time=self.dur(0.5))
+            self.en("existe")
+            self.play(FadeOut(x1), FadeOut(corr), run_time=0.25)
+            self.pop(ok)
+
+    def parseval(self):
+        w = np.linspace(-8, 8, 161)
+        vals = psd_tele(w) * periodograma_blanco(31, 161) * 0.9
+        P = Lienzo(ancho=8.4, alto=3.4, t_rango=(-8, 8), v_max=2.4, centro=(1.8, -3.0))
+        f = lambda x: np.interp(x, w, vals)
+        ej = ejes_L(P, 0, 2.3)
+        curva = curva_f(P, f, -8, 8, MEDIDA, 3.5, n=161)
+        franjas = VGroup(*[area_f(P, f, -8 + 16 * i / 7, -8 + 16 * (i + 1) / 7, ARCOIRIS[i], 0.55, n=30) for i in range(7)])
+        area_c = area_f(P, f, -8, 8, AMBAR, 0.35, n=161)
+        F = formula("E", "=", r"\frac{1}{2\pi}", r"\int", r"|X_T(j\omega)|^2", r"\,d\omega", escala=1.0,
+                    colores={0: AMBAR, 4: MEDIDA}).move_to([-3.3, 2.6, 0])
+        par = etiqueta("Parseval", INK, 0.6).move_to([-3.3, 3.55, 0])
+        lab_e = etiqueta("energía", AMBAR, 0.5).next_to(F[0], DOWN, buff=0.25)
+        lab_p = etiqueta("potencia", AMBAR, 0.5).move_to(lab_e)
+        F2 = formula("P_T", "=", r"\frac{|X_T(j\omega)|^2}{2T}", escala=1.0, colores={0: AMBAR}).move_to([-3.3, 0.7, 0])
+        palabra_p = self.palabra("periodograma", AMBAR, 0.95).move_to([4.5, 2.6, 0])
+        with self.narrar("b2"):
+            self.en("parseval")
+            self.corte()
+            self.play(FadeIn(par), FadeIn(F[0]), FadeIn(F[1]), run_time=self.dur(0.5))
+            self.en("e_tiempo")
+            self.play(FadeIn(lab_e), run_time=0.3)
+            self.en("area")
+            self.play(FadeIn(F[3]), FadeIn(F[4]), FadeIn(F[5]), Create(ej), Create(curva), FadeIn(area_c), run_time=self.dur(1.0))
+            self.en("dospi")
+            self.play(FadeIn(F[2]), run_time=0.4)
+            self.en("modulo")
+            self.resaltar(F[4], color=MEDIDA)
+            self.en("reparte")
+            self.play(FadeOut(area_c), FadeIn(franjas), run_time=self.dur(0.7))
+            self.en("divide")
+            self.play(FadeIn(F2), run_time=self.dur(0.6))
+            self.en("potencia")
+            self.play(ReplacementTransform(lab_e, lab_p), run_time=0.4)
+            self.en("periodograma")
+            self.pop(palabra_p)

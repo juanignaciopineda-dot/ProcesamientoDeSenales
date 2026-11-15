@@ -1,0 +1,131 @@
+"""Escena 06 — El área de lo impar es cero: la densidad es real y par. Ejemplo de las tres barras."""
+from comun.escena import *
+
+
+def producto(x):
+    return r_tele(x) * np.sin(2 * x)
+
+
+class RealYPar(EscenaCurso):
+    ESCENA = "06"
+
+    def construct(self):
+        self.parte_b1()
+        self.parte_b2()
+        self.parte_b3()
+        self.wait(1.0)
+        self.limpiar()
+
+    def parte_b1(self):
+        F = Lienzo(ancho=8.0, alto=2.6, t_rango=(-3, 3), v_max=0.3, centro=(0.0, 1.5))
+        ej = ejes_L(F, -0.25, 0.25)
+        curva = curva_f(F, producto, -3, 3, AMBAR, 4)
+        der = area_f(F, producto, 0, 3, VERDE, 0.5)
+        izq = area_f(F, producto, -3, 0, ROJO, 0.5)
+        cero = MathTex(r"0", color=TXT).scale(1.4).move_to([5.2, 1.5, 0])
+        p1 = Dot(F.p(1, producto(1)), radius=0.1, color=VERDE)
+        p2 = Dot(F.p(-1, producto(-1)), radius=0.1, color=ROJO)
+        l1 = MathTex(r"+0{,}1", color=VERDE).scale(0.7).next_to(p1, UP, buff=0.12)
+        l2 = MathTex(r"-0{,}1", color=ROJO).scale(0.7).next_to(p2, DOWN, buff=0.12)
+        pares = VGroup(*[DashedLine(F.p(-x, producto(-x)), F.p(x, producto(x)), color=INK, stroke_width=2)
+                         for x in (0.5, 1.5, 2.2)])
+        suma0 = etiqueta("suma 0", INK, 0.5).move_to([-5.4, 1.5, 0])
+        A = formula(r"\int R_{xx}(\tau)\cos(\omega\tau)\,d\tau", escala=0.9).move_to([-0.8, -1.5, 0])
+        B = formula(r"-\,j\int R_{xx}(\tau)\sin(\omega\tau)\,d\tau", escala=0.9).move_to([-0.2, -2.5, 0])
+        real = etiqueta("real", VERDE, 0.7).move_to([4.6, -1.5, 0])
+        with self.narrar("b1"):
+            self.en("areacero")
+            self.play(Create(ej), Create(curva), FadeIn(A), FadeIn(B), run_time=self.dur(0.8))
+            self.play(FadeIn(der), FadeIn(izq), run_time=0.4)
+            self.en("cancela")
+            self.play(FadeOut(der), FadeOut(izq), FadeIn(cero, scale=0.5), run_time=self.dur(0.7))
+            self.en("tau1")
+            self.play(FadeIn(p1), FadeIn(l1), run_time=0.4)
+            self.en("menos1")
+            self.play(FadeIn(p2), FadeIn(l2), run_time=0.4)
+            self.en("parejas")
+            self.play(Create(pares), FadeIn(suma0), run_time=self.dur(0.7))
+            self.en("jota")
+            self.play(Create(tachar(B)), B.animate.fade(0.6), run_time=0.5)
+            self.en("queda")
+            self.resaltar(A, color=AMBAR, escala=1.1)
+            self.en("real")
+            self.pop(real)
+
+    def parte_b2(self):
+        g = formula(r"\cos(-\omega\tau)", "=", r"\cos(\omega\tau)", escala=1.1).move_to([0, 3.2, 0])
+        C = Lienzo(ancho=5.4, alto=2.2, t_rango=(-3, 3), v_max=1.3, centro=(-3.6, 0.9))
+        cos_c = curva_f(C, lambda x: np.cos(2 * x), -3, 3, RUIDO, 4)
+        giro = CurvedArrow(C.p(-1.2, 1.15), C.p(1.2, 1.15), color=AMBAR, angle=-TAU / 5)
+        om = MathTex(r"\omega\to-\omega", color=AMBAR).scale(0.75).move_to(C.p(0, 1.9))
+        h = formula(r"S_{xx}(j\omega)", "=", r"S_{xx}(-j\omega)", escala=1.0).move_to([0, -1.5, 0])
+        P = Lienzo(ancho=5.4, alto=2.2, t_rango=(-6, 6), v_max=1.2, centro=(3.6, 0.9))
+        ej = ejes_L(P, -0.1, 1.2)
+        psd = curva_f(P, psd_tele, -6, 6, AMBAR, 5)
+        d1, d2 = Dot(P.p(-2, 0.5), radius=0.1, color=SENAL), Dot(P.p(2, 0.5), radius=0.1, color=SENAL)
+        lh = DashedLine(d1.get_center(), d2.get_center(), color=SENAL, stroke_width=2.5)
+        t1 = etiqueta("real", VERDE, 0.6).move_to([-1.0, -2.8, 0])
+        t2 = etiqueta("par", VERDE, 0.6).move_to([1.0, -2.8, 0])
+        k1 = tilde(VERDE, 0.28).next_to(t1, LEFT, buff=0.2)
+        k2 = tilde(VERDE, 0.28).next_to(t2, RIGHT, buff=0.2)
+        eje_sim = DashedLine(P.p(0, -0.1), P.p(0, 1.3), color=AMBAR, stroke_width=3)
+        v1, v2 = ventana(P, 1.5, 2.5, 0.8), ventana(P, -2.5, -1.5, 0.8)
+        with self.narrar("b2"):
+            self.en("coseno")
+            self.corte()
+            self.play(FadeIn(g), Create(C.base()), Create(cos_c), run_time=self.dur(0.9))
+            self.en("vuelta")
+            self.play(Create(giro), FadeIn(om), run_time=self.dur(0.8))
+            self.en("asique")
+            self.play(FadeIn(h), run_time=0.7)
+            self.en("omegamenos")
+            self.play(Create(ej), Create(psd), FadeIn(d1), FadeIn(d2), Create(lh), run_time=self.dur(1.0))
+            self.en("demostrado")
+            self.play(FadeIn(t1), FadeIn(t2), FadeIn(k1), FadeIn(k2), run_time=0.5)
+            self.en("simetria")
+            self.play(Create(eje_sim), run_time=0.4)
+            self.en("ventanitas")
+            self.play(FadeIn(v1), FadeIn(v2), run_time=0.5)
+
+    def parte_b3(self):
+        T = Tallos([0.4, 1.0, 0.4], centro=(-3.8, -0.5), paso=1.3, unidad=1.5, color=SENAL, k0=-1, indices=True)
+        etq = VGroup(MathTex(r"0{,}4", color=TXT).scale(0.7).next_to(T.pos(0), UP, buff=0.1),
+                     MathTex(r"1", color=TXT).scale(0.7).next_to(T.pos(1), UP, buff=0.1),
+                     MathTex(r"0{,}4", color=TXT).scale(0.7).next_to(T.pos(2), UP, buff=0.1))
+        P = Lienzo(ancho=5.8, alto=2.8, t_rango=(-3.6, 3.6), v_max=2.2, centro=(3.5, -0.2))
+        ej = ejes_L(P, -0.3, 2.1)
+        tpi = VGroup(MathTex(r"-\pi", color=INK).scale(0.6).move_to(P.p(-np.pi, -0.55)),
+                     MathTex(r"0", color=INK).scale(0.6).move_to(P.p(0, -0.55)),
+                     MathTex(r"\pi", color=INK).scale(0.6).move_to(P.p(np.pi, -0.55)))
+        om = MathTex(r"\Omega", color=INK).scale(0.7).move_to(P.p(3.6, -0.6))
+        discreto = etiqueta("tiempo discreto", INK, 0.6).move_to([0, 3.3, 0])
+        f = formula(r"S(\Omega)=", r"0{,}4\,e^{j\Omega}", "+1+", r"0{,}4\,e^{-j\Omega}", escala=1.0).move_to([0, -2.5, 0])
+        nota_s = MathTex(r"j\sin\Omega-j\sin\Omega=0", color=ROJO).scale(0.75).move_to([0, -3.4, 0])
+        g = formula(r"S(\Omega)=1+0{,}8\cos\Omega", escala=1.1, colores={0: TXT}).move_to([0, -2.5, 0])
+        curva = curva_f(P, espectro_3b(0.4), -np.pi, np.pi, AMBAR, 5)
+        sim = DashedLine(P.p(0, -0.3), P.p(0, 2.1), color=INK, stroke_width=2)
+        with self.narrar("b3"):
+            self.en("discreto")
+            self.corte()
+            self.play(FadeIn(discreto), run_time=0.4)
+            self.en("pipi")
+            self.play(Create(ej), FadeIn(tpi), FadeIn(om), run_time=self.dur(0.8))
+            self.en("barras")
+            self.play(Create(T.base), *[GrowFromEdge(t, DOWN) for t in T.tallos], *[FadeIn(p) for p in T.puntos],
+                      FadeIn(T.ks), run_time=self.dur(0.9))
+            self.en("alturas")
+            self.play(FadeIn(etq), run_time=0.5)
+            self.en("sutransf")
+            self.play(FadeIn(f[0]), run_time=0.4)
+            self.en("dosexp")
+            self.play(FadeIn(f[1]), FadeIn(f[2]), FadeIn(f[3]), run_time=self.dur(0.8))
+            self.en("masj")
+            self.resaltar(f[1], color=AMBAR, escala=1.15)
+            self.en("menosj")
+            self.resaltar(f[3], color=AMBAR, escala=1.15)
+            self.en("cancelan")
+            self.play(FadeIn(nota_s), run_time=0.5)
+            self.en("ochos")
+            self.play(ReplacementTransform(f, g), FadeOut(nota_s), run_time=self.dur(0.8))
+            self.en("vista")
+            self.play(Create(curva), Create(sim), run_time=self.dur(1.2))

@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuestionarios Caps. 7–9</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#f7f6f2; --panel:#ffffff; --ink:#1d1d1b; --muted:#6b6a65; --line:#e2e0d8;
+  --accent:#2f5d8a; --accent-ink:#ffffff; --ok:#2e7d4f; --ok-bg:#e6f3ea; --bad:#b23b3b; --bad-bg:#f8e7e5;
+  --sel:#e8eef5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161614; --panel:#201f1d; --ink:#ecebe6; --muted:#a19f97; --line:#34332f;
+    --accent:#7fa8d6; --accent-ink:#10161d; --ok:#6cc08d; --ok-bg:#1d2f24; --bad:#e58a84; --bad-bg:#352120;
+    --sel:#25303c;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161614; --panel:#201f1d; --ink:#ecebe6; --muted:#a19f97; --line:#34332f;
+  --accent:#7fa8d6; --accent-ink:#10161d; --ok:#6cc08d; --ok-bg:#1d2f24; --bad:#e58a84; --bad-bg:#352120;
+  --sel:#25303c;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit;font-size:.9rem}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.bar label{font-size:.9rem;color:var(--muted);display:flex;gap:6px;align-items:center;margin-left:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:16px}
+.progress>div{height:100%;background:var(--accent);transition:width .2s}
+h2{font-size:1.1rem;margin:0 0 8px}
+.q{margin:0 0 16px}
+.opts{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;background:transparent;color:inherit;font:inherit;text-align:left;width:100%}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[aria-checked="true"]{background:var(--sel);border-color:var(--accent)}
+.opt .l{font-weight:700;min-width:1.4em}
+.opt[disabled]{cursor:default}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad)}
+.why{display:block;font-size:.88rem;color:var(--muted);margin-top:4px}
+textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:var(--bg);color:var(--ink);resize:vertical}
+.hint{font-size:.85rem;color:var(--muted);margin:6px 0 14px}
+.btn{border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.verdict{font-weight:700;margin:4px 0 10px}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.box{border-left:3px solid var(--accent);padding:8px 12px;margin:12px 0;background:var(--bg);border-radius:0 8px 8px 0}
+.box h3{margin:0 0 4px;font-size:.9rem;color:var(--muted);font-weight:600}
+.self{margin:14px 0}
+.self p{margin:0 0 8px;font-size:.92rem}
+.hidden{display:none}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+td,th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}
+.big{font-size:2rem;font-weight:700;margin:0}
+.katex{font-size:1.05em}
+</style>
+</head>
+<body>
+<main>
+  <h1>Cuestionarios: capítulos 7, 8 y 9</h1>
+  <p class="sub">Elegí una opción y justificala antes de ver la corrección. Las opciones se mezclan en cada intento.</p>
+
+  <div class="bar" id="caps">
+    <button class="chip" data-cap="7">Cap. 7 · Probabilidad</button>
+    <button class="chip" data-cap="8">Cap. 8 · Estimación</button>
+    <button class="chip" data-cap="9">Cap. 9 · Hipótesis</button>
+    <button class="chip" data-cap="all">Todos</button>
+    <label><input type="checkbox" id="shuffleQ"> Preguntas en orden aleatorio</label>
+  </div>
+
+  <section class="card" id="quiz"></section>
+</main>
+
+<!--
+Formato del banco de preguntas:
+  @ capítulo | título
+  ? enunciado
+  - opción incorrecta || por qué está mal
+  + opción correcta
+  ! explicación
+Las matemáticas van en $...$ (KaTeX).
+-->
+<script type="text/plain" id="banco">
+@ 7 | El modelo probabilístico básico
+? ¿Cuáles son los tres componentes que definen un modelo probabilístico básico?
+- El espacio muestral $\Omega$, las variables aleatorias definidas sobre él y su PMF. || Las variables aleatorias y sus PMF o PDF se construyen después, sobre un modelo ya definido; no son parte de la tripla básica.
++ El espacio muestral $\Omega$, una colección (álgebra) de eventos y la medida de probabilidad $P$.
+- El espacio muestral $\Omega$, una colección de eventos y la distribución conjunta de esos eventos. || La "distribución conjunta" no es un ingrediente del modelo: lo que asigna números a los eventos es la medida $P$. Las conjuntas aparecen recién con variables aleatorias.
+- Los resultados posibles $\psi$, la probabilidad de cada resultado y el teorema de Bayes. || Bayes es una consecuencia de la definición de probabilidad condicional, no un componente. Además, en espacios continuos la probabilidad se asigna a eventos, no a resultados sueltos.
+! El modelo es la tripla: espacio muestral $\Omega$ (los resultados $\psi$), un álgebra de eventos (cerrada bajo uniones, intersecciones y complementos) y una medida $P$ que le asigna un número a cada evento respetando los axiomas.
+
+@ 7 | Axiomas de probabilidad
+? Si $A$ y $B$ son mutuamente excluyentes ($A\cap B=\emptyset$), ¿qué da $P(A\cup B)$ según los axiomas?
+- $P(A)\,P(B)$ || El producto aparece en la intersección de eventos independientes, no en la unión de excluyentes. De hecho, si son excluyentes, $P(A\cap B)=0$.
+- $P(A)+P(B)-P(A)\,P(B)$ || Esa es la unión de eventos independientes. Con eventos excluyentes la intersección tiene probabilidad $0$, no $P(A)P(B)$.
++ $P(A)+P(B)$
+- $\max\{P(A),\,P(B)\}$ || El máximo sería la unión si un evento contuviera al otro ($B\subset A$), que es casi lo opuesto a ser disjuntos.
+! Es el axioma de aditividad: para eventos disjuntos, $P(A\cup B)=P(A)+P(B)$. La fórmula general $P(A)+P(B)-P(A\cap B)$ se reduce a esta porque la intersección es vacía.
+
+@ 7 | Probabilidad condicional
+? ¿Bajo qué condición está definida la probabilidad condicional $P(A\mid B)$?
+- Para cualquier $B$; si $P(B)=0$ se toma por convención $P(A\mid B)=P(A)$. || La definición elemental $P(A,B)/P(B)$ no admite esa convención: con $P(B)=0$ el cociente queda $0/0$ y no está definido.
+- Solo cuando $A$ y $B$ son estadísticamente independientes. || La independencia se chequea usando la condicional ($P(A\mid B)=P(A)$); no es requisito para definirla.
+- Solo cuando $P(A)>0$ y $P(B)>0$ simultáneamente. || $P(A)$ puede ser cero sin problema (da $P(A\mid B)=0$). Lo único que hace falta es no dividir por cero.
++ Solo cuando el evento condicionante cumple $P(B)>0$.
+! Por definición $P(A\mid B)=\dfrac{P(A,B)}{P(B)}$, así que sólo tiene sentido si $P(B)>0$. Sobre $A$ no se exige nada.
+
+@ 7 | Independencia de una colección
+? ¿Cuál afirmación sobre la independencia mutua de una colección de eventos es correcta?
+- Si los eventos son independientes de a pares, la colección es mutuamente independiente. || Contraejemplo clásico: dos monedas justas, $A$ = "cara en la 1", $B$ = "cara en la 2", $C$ = "salieron iguales". Son independientes de a pares, pero $P(A\cap B\cap C)=1/4\neq 1/8$.
++ Es mutua si la intersección de cualquier subcolección factoriza en el producto de sus probabilidades.
+- Es mutua si la intersección de todos los eventos factoriza en el producto de sus probabilidades. || Pedirlo sólo para la intersección total no alcanza: se puede armar $P(A\cap B\cap C)=P(A)P(B)P(C)$ con $A$ y $B$ dependientes. Hay que pedirlo para todo subconjunto.
+- Dos eventos de probabilidad no nula son independientes si y solo si $P(A\cap B)=0$. || Eso es ser excluyentes, y excluyentes con probabilidades no nulas son siempre dependientes: saber que ocurrió $A$ asegura que $B$ no ocurrió.
+! La independencia mutua exige que factorice la intersección de cualquier subcolección (pares, ternas, …, todos). La independencia de a pares es necesaria pero no suficiente.
+
+@ 7 | Saltos en la CDF
+? Si la CDF $F_X(x)$ presenta un salto en $x_1$, ¿qué significa?
+- Que $X$ es continua en $x_1$ y la PDF toma allí su valor máximo. || Un salto es justamente lo contrario de continuidad. Una PDF alta hace que la CDF suba rápido, pero sin saltar.
+- Que la PDF vale cero en $x_1$, porque allí la CDF no es derivable. || Donde la CDF salta, la PDF tiene un impulso de Dirac (de área igual a la altura del salto), no un cero.
+- Que $P(X\le x_1)=1$, o sea que $x_1$ es el mayor valor que puede tomar $X$. || La CDF puede seguir creciendo después del salto; sólo vale 1 en $x_1$ si ya no queda masa a la derecha.
++ Que $P(X=x_1)>0$: hay masa concentrada en $x_1$, igual a la altura del salto.
+! Un salto de altura $h$ en $F_X$ significa $P(X=x_1)=h>0$. En la PDF eso aparece como un impulso $h\,\delta(x-x_1)$.
+
+@ 7 | Esperanza
+? ¿Qué representa el primer momento $E[X]$ de una variable aleatoria real?
++ El centro de masa de la densidad: el promedio de $x$ ponderado por $f_X(x)$.
+- La dispersión típica de los valores de $X$ alrededor de su centro. || Eso es la desviación estándar, la raíz del segundo momento central.
+- El valor de $x$ en el que la densidad $f_X(x)$ alcanza su máximo. || Eso es la moda. Coincide con la media sólo en casos particulares (por ejemplo, densidades simétricas unimodales).
+- El valor de $x$ que deja la mitad de la probabilidad a cada lado. || Eso es la mediana.
+! $E[X]=\int_{-\infty}^{\infty}x\,f_X(x)\,dx$ es el promedio de los valores ponderado por la densidad: el centro de masa de una "barra" con densidad de masa $f_X$.
+
+@ 7 | Desigualdad de Chebyshev
+? ¿Qué información mínima hace falta para aplicar la desigualdad de Chebyshev a $X$?
+- La PDF completa de $X$, para poder integrar las colas. || Con la PDF calcularías la probabilidad exacta; la gracia de Chebyshev es justamente no necesitarla.
+- La media $\mu_X$ y saber que $X$ es Gaussiana. || Vale para cualquier distribución con varianza finita. Si supieras que es Gaussiana usarías la función $Q$ y tendrías una cota mucho más ajustada.
+- Sólo la media $\mu_X$, siempre que $X$ sea no negativa. || Esa es la desigualdad de Markov, no la de Chebyshev.
++ Sólo la media $\mu_X$ y la desviación estándar $\sigma_X$.
+! $P(|X-\mu_X|\ge\alpha\sigma_X)\le 1/\alpha^2$ vale para cualquier distribución con varianza finita, y sólo usa $\mu_X$ y $\sigma_X$.
+
+@ 7 | Independencia e incorrelación
+? Si $X$ e $Y$ son independientes, ¿qué se puede afirmar con certeza sobre su relación lineal?
+- Que son ortogonales, es decir, $E[XY]=0$. || Independencia da $E[XY]=E[X]E[Y]$, que es cero sólo si alguna media es nula. Ortogonal no es lo mismo que incorrelacionado.
++ Que son incorrelacionadas, es decir, $\sigma_{XY}=0$.
+- Que son incorrelacionadas, y que la recíproca también vale: incorrelación implica independencia. || La recíproca es falsa en general (ej.: $X$ uniforme en $[-1,1]$ e $Y=X^2$ son incorrelacionadas y totalmente dependientes). Sólo vale para conjuntamente Gaussianas.
+- Que $|\rho_{XY}|$ es pequeño, aunque no necesariamente nulo. || Con independencia la covarianza es exactamente cero, no "pequeña".
+! Si son independientes, $f_{X,Y}=f_Xf_Y$, entonces $E[XY]=E[X]E[Y]$ y $\sigma_{XY}=0$: son incorrelacionadas. La vuelta no vale en general.
+
+@ 7 | Ortogonalidad
+? ¿Cuándo se dice que dos variables aleatorias $X$ e $Y$ son ortogonales?
+- Cuando su covarianza es nula: $\sigma_{XY}=0$. || Eso es ser incorrelacionadas. Coincide con ortogonalidad sólo si alguna de las medias es cero.
+- Cuando su coeficiente de correlación vale $\rho_{XY}=-1$. || $\rho=-1$ es dependencia lineal perfecta con pendiente negativa: vectores opuestos (ángulo de 180°), lo contrario de ortogonales.
+- Cuando son independientes, cualesquiera sean sus medias. || Si son independientes, $E[XY]=E[X]E[Y]$, que no es cero cuando ambas medias son no nulas.
++ Cuando su correlación es nula: $E[XY]=0$.
+! Ortogonalidad se define con el momento cruzado sin centrar: $E[XY]=0$. Con las variables centradas, ortogonalidad e incorrelación son lo mismo.
+
+@ 7 | Interpretación vectorial de ρ
+? Si representamos $X-\mu_X$ e $Y-\mu_Y$ como vectores, ¿qué es geométricamente $\rho_{XY}$?
+- La distancia entre las puntas de los dos vectores. || La distancia al cuadrado es $E[(\tilde X-\tilde Y)^2]=\sigma_X^2+\sigma_Y^2-2\sigma_{XY}$, no $\rho$.
+- El producto de las longitudes de los dos vectores. || Ese producto es $\sigma_X\sigma_Y$, el denominador de $\rho$.
++ El coseno del ángulo que forman los dos vectores.
+- La longitud de la proyección de un vector sobre el otro. || La proyección de $\tilde Y$ sobre $\tilde X$ mide $\rho\,\sigma_Y$: tiene unidades de $Y$. $\rho$ es adimensional.
+! Con producto interno $\langle \tilde X,\tilde Y\rangle=\sigma_{XY}$ y longitudes $\sigma_X$, $\sigma_Y$, resulta $\rho=\sigma_{XY}/(\sigma_X\sigma_Y)=\cos\theta$. Por eso $-1\le\rho\le 1$.
+
+@ 8 | El proceso de inferencia
+? ¿Cómo se llama el proceso sistemático de estimar o predecir cantidades no medidas a partir de observaciones de otras variables y de modelos previos?
+- Modelado probabilístico. || El modelado construye el modelo; la inferencia lo usa, junto con las mediciones, para sacar conclusiones.
+- Prueba de hipótesis. || Es un caso particular de inferencia (cuando la cantidad desconocida toma pocos valores), no el nombre general.
++ Inferencia.
+- Estimación LMMSE. || Es un método particular de inferencia, no el proceso general.
+! El libro llama inferencia al proceso general; la estimación (Cap. 8) y las pruebas de hipótesis (Cap. 9) son sus dos variantes.
+
+@ 8 | Estimar sin mediciones
+? Sin ninguna medición, conociendo sólo $f_Y(y)$, ¿qué constante $\hat y$ minimiza el MSE $E[(Y-\hat y)^2]$?
+- La mediana de $Y$. || La mediana minimiza el error absoluto medio $E[|Y-\hat y|]$, no el cuadrático.
+- La moda de $Y$ (el máximo de $f_Y$). || La moda es óptima para el costo "todo o nada", no para el cuadrático.
+- $\hat y=0$, para que el error tenga media nula. || El error tiene media $\mu_Y-\hat y$; es nula justamente con $\hat y=\mu_Y$, no con $0$.
++ La media $E[Y]$.
+! $E[(Y-\hat y)^2]=\sigma_Y^2+(\mu_Y-\hat y)^2$, que se minimiza con $\hat y=\mu_Y$. El MSE mínimo es $\sigma_Y^2$.
+
+@ 8 | Error absoluto medio
+? Si en lugar del MSE se minimiza el error absoluto medio $E[|Y-\hat y|]$, ¿cuál es la estimación óptima?
+- La media de $Y$. || La media minimiza el error cuadrático, que castiga más los errores grandes.
+- La moda de $Y$. || La moda es óptima para el costo "todo o nada".
++ La mediana de $Y$.
+- El punto medio del soporte de $f_Y$. || Depende sólo de los extremos del soporte, no de cómo se reparte la probabilidad.
+! Derivando, $\frac{d}{d\hat y}E[|Y-\hat y|]=P(Y<\hat y)-P(Y>\hat y)$, que se anula cuando $\hat y$ deja la mitad de la probabilidad a cada lado: la mediana.
+
+@ 8 | Costo "todo o nada"
+? Con un costo "todo o nada" (vale 1 si el error cae fuera de una banda de tolerancia muy chica y 0 adentro), ¿cuál es el estimador óptimo?
+- La mediana. || La mediana es óptima para el error absoluto.
+- La media. || La media es óptima para el error cuadrático.
+- Cualquier valor del soporte: el costo esperado es el mismo. || No: el costo esperado es $\approx 1-2\epsilon\,f_Y(\hat y)$, que sí depende de $\hat y$.
++ La moda (el máximo de la densidad).
+! El costo esperado es $1-P(|Y-\hat y|<\epsilon)\approx 1-2\epsilon f_Y(\hat y)$; se minimiza eligiendo $\hat y$ donde $f_Y$ es máxima: la moda. Con medición, esto da el estimador MAP.
+
+@ 8 | MMSE con una medición
+? Dada la medición $X=x$, ¿qué estimador minimiza el MSE condicional, sin restricciones sobre su forma?
+- La recta $ax+b$ con $a=\sigma_{YX}/\sigma_X^2$. || Ese es el LMMSE: óptimo sólo entre estimadores afines. Coincide con el MMSE en casos como el Gaussiano.
++ La media condicional $E[Y\mid X=x]$.
+- La media a priori $E[Y]$, que no depende de $x$. || Es la mejor constante sin medición. Si $X$ aporta información sobre $Y$, usar $x$ baja el MSE.
+- El valor de $y$ que maximiza $f_{Y\mid X}(y\mid x)$. || Eso es el estimador MAP, óptimo para el costo "todo o nada", no para el cuadrático.
+! Es el mismo razonamiento que sin medición, pero con la densidad a posteriori $f_{Y\mid X}(y\mid x)$: la mejor constante es su media, $E[Y\mid X=x]$.
+
+@ 8 | Ortogonalidad del MMSE
+? ¿Qué dice el principio de ortogonalidad sobre el error $Y-\hat y(X)$ del estimador MMSE sin restricciones?
+- Que es ortogonal a $X$ y a las constantes, pero no a funciones no lineales de $X$. || Eso es lo que vale para el LMMSE. Para el MMSE el resultado es más fuerte.
+- Que es independiente de la medición $X$. || Ortogonal no es independiente: por ejemplo, la varianza condicional del error puede depender de $X$.
+- Que es ortogonal a $Y$, la variable que se quiere estimar. || El error es ortogonal al estimador, no a $Y$: $E[(Y-\hat y)Y]$ es justamente el MSE, que no es cero.
++ Que es ortogonal a cualquier función $h(X)$ de la medición.
+! Para toda $h$, $E[(Y-E[Y\mid X])\,h(X)]=0$ (se ve condicionando en $X$). En particular el error es ortogonal al propio estimador y a las constantes.
+
+@ 8 | Insesgadez del MMSE
+? ¿Por qué el estimador MMSE $\hat y(X)=E[Y\mid X]$ es insesgado?
++ Porque $E[\hat y(X)]=E[Y]$, por la ley de la esperanza iterada.
+- Porque el error tiene varianza nula para cada valor de $X$. || La varianza del error es el MSE, que en general no es cero.
+- Porque $E[\hat y(X)^2]=E[Y^2]$, es decir, conserva la potencia. || Es falso: $E[\hat y^2]=E[Y^2]-\text{MSE}\le E[Y^2]$. El estimador "achica" la potencia.
+- Porque $\hat y(X)=Y$ con probabilidad uno. || Eso sería error nulo, que sólo pasa si $Y$ es función de $X$.
+! $E[\hat y(X)]=E\big[E[Y\mid X]\big]=E[Y]$: el error tiene media cero. Equivale a que el error sea ortogonal a la constante $h(X)=1$.
+
+@ 8 | Ventaja del LMMSE
+? ¿Cuál es la principal ventaja práctica de restringir el estimador a una forma lineal (LMMSE)?
+- Logra siempre un MSE menor que la esperanza condicional. || Al revés: $\text{MSE}_{\text{LMMSE}}\ge\text{MSE}_{\text{MMSE}}$, con igualdad sólo si $E[Y\mid X]$ es afín.
+- Su error es ortogonal a cualquier función no lineal de los datos. || Sólo es ortogonal a funciones afines de los datos.
++ Sólo requiere medias, varianzas y covarianzas, no la densidad conjunta.
+- No necesita las medias, sólo las varianzas y la covarianza. || Sí las necesita: $\hat Y_L=a(X-\mu_X)+\mu_Y$.
+! El MMSE requiere $f_{Y\mid X}$, que casi nunca se conoce. El LMMSE sale sólo de los momentos de primer y segundo orden, que se pueden estimar de datos.
+
+@ 8 | Pendiente del LMMSE
+? Para $\hat Y_L=a(X-\mu_X)+\mu_Y$, ¿cuál es la pendiente óptima $a$?
+- $a=\sigma_{YX}\,\sigma_X^2$ || Las unidades no cierran: $a$ tiene que tener unidades de $Y/X$.
+- $a=\dfrac{\sigma_{YX}}{\sigma_Y^2}$ || Esa es la pendiente para estimar $X$ a partir de $Y$.
++ $a=\dfrac{\sigma_{YX}}{\sigma_X^2}$
+- $a=\rho_{YX}\,\dfrac{\sigma_X}{\sigma_Y}$ || Está invertido el cociente: lo correcto es $\rho_{YX}\,\sigma_Y/\sigma_X$.
+! Derivando el MSE respecto de $a$ e igualando a cero: $a=\sigma_{YX}/\sigma_X^2=\rho_{YX}\,\sigma_Y/\sigma_X$.
+
+@ 8 | Ortogonalidad del LMMSE
+? A diferencia del MMSE sin restricciones, ¿hasta dónde llega la ortogonalidad del error en el LMMSE?
++ Es ortogonal a las constantes y a $X$, pero no necesariamente a funciones no lineales de $X$.
+- Es ortogonal a cualquier función $h(X)$ de la medición, exactamente igual que en el MMSE. || Eso es exclusivo del MMSE. Al LMMSE sólo se le pide ser óptimo entre funciones afines.
+- Es ortogonal a $X$, aunque puede tener media no nula porque el LMMSE puede ser sesgado. || El LMMSE es insesgado: ser ortogonal a las constantes es lo mismo que tener error de media cero.
+- Es ortogonal a $X$ sólo cuando $X$ e $Y$ son conjuntamente Gaussianas; si no, no. || La ortogonalidad con $X$ vale siempre: es la condición que define al LMMSE (ecuación normal).
+! Optimizar sólo sobre $aX+b$ da dos condiciones: error ortogonal a $1$ y a $X$. Nada garantiza ortogonalidad con, por ejemplo, $X^2$.
+
+@ 8 | Ecuaciones normales
+? Con varias mediciones agrupadas en un vector $\mathbf X$, ¿qué sistema (ecuaciones normales) determina el vector de coeficientes $\mathbf a$ del LMMSE?
+- $\mathbf a=C_{XX}\,\mathbf c_{XY}$ || Falta invertir: la solución es $\mathbf a=C_{XX}^{-1}\mathbf c_{XY}$.
+- $\mathbf c_{YX}\,\mathbf a=\sigma_Y^2$ || Es una sola ecuación escalar, no alcanza para determinar un vector. Además mezcla la varianza de $Y$, que aparece en el MSE, no en los coeficientes.
+- $R_{XX}\,\mathbf a=\mathbf c_{XY}$, con $R_{XX}=E[\mathbf X\mathbf X^{T}]$ sin centrar. || Con la forma centrada aparece la matriz de covarianzas; la de correlación sin centrar sólo coincide si $\boldsymbol\mu_X=\mathbf 0$.
++ $C_{XX}\,\mathbf a=\mathbf c_{XY}$
+! Imponer que el error sea ortogonal a cada $X_i-\mu_{X_i}$ da $L$ ecuaciones lineales: $C_{XX}\,\mathbf a=\mathbf c_{XY}$.
+
+@ 8 | El caso Gaussiano
+? Si $X$ e $Y$ son conjuntamente Gaussianas, ¿qué relación hay entre el MMSE sin restricciones y el LMMSE?
+- El MMSE es no lineal en $x$ y supera claramente al LMMSE. || En el caso Gaussiano $E[Y\mid X=x]$ es afín: no hay nada que superar.
+- Coinciden sólo si además $X$ e $Y$ son incorrelacionadas. || Coinciden siempre en el caso Gaussiano. Si además son incorrelacionadas, ambos se reducen a la constante $\mu_Y$.
++ Coinciden, porque $E[Y\mid X=x]$ resulta afín en $x$.
+- Tienen la misma forma, pero el LMMSE tiene un MSE mayor. || Si son el mismo estimador, tienen el mismo MSE.
+! Para Gaussianas bivariadas, $f_{Y\mid X}$ es Gaussiana con media $\mu_Y+\frac{\sigma_{YX}}{\sigma_X^2}(x-\mu_X)$: exactamente el LMMSE.
+
+@ 9 | Objetivo de la regla MAP
+? ¿Cuál es el propósito de la regla de decisión MAP?
+- Maximizar $P_D$ manteniendo $P_{FA}$ por debajo de un nivel $\alpha$. || Ese es el criterio de Neyman-Pearson.
+- Minimizar la probabilidad de falsa alarma $P_{FA}$. || Minimizar sólo $P_{FA}$ se logra declarando siempre $H_0$, a costa de $P_M=1$.
++ Minimizar la probabilidad de error $P_e$ al elegir entre hipótesis.
+- Elegir la hipótesis que maximiza $f_{R\mid H}(r\mid H_i)$, ignorando las a priori. || Eso es máxima verosimilitud (ML); coincide con MAP sólo si $p_0=p_1$.
+! MAP elige la hipótesis con mayor probabilidad a posteriori $P(H_i\mid R=r)$, y eso minimiza la probabilidad de error.
+
+@ 9 | Fallo y detección
+? En una prueba binaria, ¿cómo se relacionan la probabilidad de fallo $P_M$ y la de detección $P_D$?
+- $P_M=1-P_{FA}$ || $1-P_{FA}$ es la probabilidad de acertar bajo $H_0$ (especificidad). $P_M$ está condicionada a $H_1$.
++ $P_M=1-P_D$
+- $P_M=p_1\,(1-P_D)$ || Esa es la probabilidad conjunta de que ocurra $H_1$ y se decida $H_0$ (su aporte a $P_e$). $P_M$ es condicional a $H_1$.
+- $P_M=1-P_D-P_{FA}$ || $P_D$ y $P_{FA}$ están condicionadas a hipótesis distintas; no son partes de una misma partición.
+! Bajo $H_1$ sólo se puede decidir $H_1$ (detección) o $H_0$ (fallo): son complementarios, así que $P_M=1-P_D$.
+
+@ 9 | Probabilidad total de error
+? Si $H_0$ y $H_1$ tienen probabilidades a priori $p_0$ y $p_1$, ¿cuánto vale la probabilidad total de error $P_e$?
+- $P_e=P_{FA}+P_M$ || Falta ponderar por las a priori. Esta suma puede incluso superar 1.
+- $P_e=p_1P_{FA}+p_0P_M$ || Pesos invertidos: la falsa alarma ocurre bajo $H_0$, así que se pondera con $p_0$.
+- $P_e=p_0(1-P_{FA})+p_1P_M$ || $1-P_{FA}$ es acertar bajo $H_0$, no equivocarse.
++ $P_e=p_0P_{FA}+p_1P_M$
+! Por probabilidad total: $P_e=P(H_0)P(\text{decidir }H_1\mid H_0)+P(H_1)P(\text{decidir }H_0\mid H_1)=p_0P_{FA}+p_1P_M$.
+
+@ 9 | Razón de verosimilitud
+? Para una medición continua $r$, ¿cómo se define la razón de verosimilitud $\Lambda(r)$?
++ $\Lambda(r)=\dfrac{f_{R\mid H}(r\mid H_1)}{f_{R\mid H}(r\mid H_0)}$
+- $\Lambda(r)=\dfrac{f_{R\mid H}(r\mid H_0)}{f_{R\mid H}(r\mid H_1)}$ || Es la inversa. Con la convención del libro, valores grandes de $\Lambda$ favorecen $H_1$.
+- $\Lambda(r)=\dfrac{P(H_1\mid R=r)}{P(H_0\mid R=r)}$ || Ese es el cociente de a posteriori, que vale $\Lambda(r)\,p_1/p_0$: incluye las a priori.
+- $\Lambda(r)=\dfrac{P(H_1)}{P(H_0)}$ || Es el cociente de a priori: ni siquiera depende de $r$.
+! $\Lambda(r)$ compara cuán verosímil es la medición bajo cada hipótesis: $f(r\mid H_1)/f(r\mid H_0)$. Las a priori quedan del otro lado, en el umbral.
+
+@ 9 | Umbral MAP
+? Escribiendo la regla MAP como una LRT (declarar $H_1$ si $\Lambda(r)>\eta$), ¿cuánto vale el umbral óptimo $\eta$?
+- $\eta=\dfrac{p_1}{p_0}$ || Está invertido: si $H_1$ es más probable a priori, el umbral tiene que bajar, no subir.
++ $\eta=\dfrac{p_0}{p_1}$
+- $\eta=1$ || Ese es el umbral de máxima verosimilitud; coincide con MAP sólo si $p_0=p_1$.
+- $\eta=p_0\,p_1$ || Es simétrico en $p_0$ y $p_1$, pero intercambiar las a priori tiene que invertir el umbral.
+! MAP declara $H_1$ si $p_1f(r\mid H_1)>p_0f(r\mid H_0)$, es decir, si $\Lambda(r)>p_0/p_1$.
+
+@ 9 | Criterio de Neyman-Pearson
+? ¿Cuál es el objetivo del criterio de Neyman-Pearson cuando no se conocen las a priori?
+- Minimizar $P_e$ suponiendo que las hipótesis son equiprobables. || Eso es inventar a priori ($p_0=p_1$), justo lo que Neyman-Pearson evita.
+- Minimizar el riesgo esperado con costos $c_{ij}$ elegidos por el diseñador. || Ese es el criterio de Bayes (riesgo mínimo), que necesita las a priori para promediar.
+- Lograr $P_M=0$ y, con eso fijo, minimizar $P_{FA}$. || $P_M=0$ obliga en general a declarar casi siempre $H_1$, con $P_{FA}$ muy alta. No es el planteo.
++ Maximizar $P_D$ sujeto a $P_{FA}\le\alpha$.
+! Neyman-Pearson fija la falsa alarma tolerable ($P_{FA}\le\alpha$) y maximiza la detección. La solución sigue siendo una LRT, con $\eta$ elegido para cumplir la restricción.
+
+@ 9 | Ejes de la curva ROC
+? ¿Qué se grafica en los ejes de una curva ROC?
+- $P_e$ en el eje vertical contra el umbral $\eta$ en el horizontal. || Ese gráfico existe, pero no es la ROC: la ROC no muestra el umbral explícitamente.
+- $P_D$ en el eje vertical contra $P_M$ en el horizontal. || Como $P_M=1-P_D$, ese gráfico sería siempre la misma recta.
++ $P_D$ en el eje vertical contra $P_{FA}$ en el horizontal.
+- $P_M$ en el eje vertical contra la a priori $p_0$ en el horizontal. || La ROC no depende de las a priori: es una propiedad del detector y de las densidades.
+! Barriendo el umbral de $\infty$ a $-\infty$, cada valor da un punto $(P_{FA},P_D)$; la curva va de $(0,0)$ a $(1,1)$.
+
+@ 9 | Sensibilidad
+? En la terminología médica, ¿a qué concepto de teoría de decisión equivale la sensibilidad de un test?
+- A $P_{FA}$, la tasa de falsos positivos. || La tasa de falsos positivos es $1-$especificidad.
+- A $1-P_{FA}$. || Esa es la especificidad: acertar cuando el paciente está sano ($H_0$).
+- A $P(H_1\mid\text{test positivo})$. || Ese es el valor predictivo positivo, que depende de la prevalencia.
++ A $P_D$, la probabilidad de detección.
+! La sensibilidad es la probabilidad de que el test dé positivo cuando la condición está presente: $P(\text{decidir }H_1\mid H_1)=P_D$.
+
+@ 9 | Riesgo mínimo con costos uniformes
+? Si todo error cuesta 1 ($c_{01}=c_{10}=1$) y acertar no cuesta nada ($c_{00}=c_{11}=0$), ¿en qué regla se convierte la de riesgo mínimo?
+- En la de Neyman-Pearson. || Neyman-Pearson no usa costos ni a priori; impone una restricción sobre $P_{FA}$.
++ En la regla MAP.
+- En la de máxima verosimilitud ($\eta=1$), sean cuales sean las a priori. || Con costos uniformes el umbral queda $p_0/p_1$; vale 1 sólo si además las hipótesis son equiprobables.
+- En declarar siempre la hipótesis más probable a priori. || Eso ignora la medición; es lo mejor sólo si no hay medición.
+! Con esos costos el riesgo esperado es exactamente $P_e$, así que minimizarlo es la regla MAP.
+
+@ 9 | Detección en ruido Gaussiano
+? Para detectar $s>0$ en ruido Gaussiano de media 0 y varianza 1 ($H_0: R=W$, $H_1: R=s+W$), la LRT equivale a declarar $H_1$ cuando:
+- $r<\gamma$, con $\gamma=s/2-(\ln\eta)/s$. || Como $s>0$, $\Lambda(r)=e^{sr-s^2/2}$ crece con $r$: valores grandes de $r$ favorecen $H_1$.
+- $|r|>\gamma$, con $\gamma=s/2+(\ln\eta)/s$. || El valor absoluto aparecería si $H_1$ tuviera media $\pm s$ o mayor varianza. Acá $\Lambda$ es monótona en $r$.
++ $r>\gamma$, con $\gamma=s/2+(\ln\eta)/s$.
+- $r>\gamma$, con $\gamma=s+(\ln\eta)/s$. || Con $\eta=1$ el umbral tiene que quedar en el punto medio $s/2$ entre las dos medias, no en $s$.
+! $\Lambda(r)=e^{sr-s^2/2}>\eta\iff r>\frac s2+\frac{\ln\eta}{s}$. La LRT se reduce a comparar $r$ con un umbral.
+
+@ 9 | Pendiente de la ROC
+? Para variables continuas, ¿con qué coincide la pendiente $dP_D/dP_{FA}$ de la ROC en un punto de operación?
+- Con $P_D/P_{FA}$ en ese punto. || Ese cociente es la pendiente de la recta desde el origen hasta el punto, no la de la tangente.
++ Con el umbral $\eta$ de la LRT que opera en ese punto.
+- Con la inversa del umbral, $1/\eta$. || $dP_D=-f(\gamma\mid H_1)\,d\gamma$ y $dP_{FA}=-f(\gamma\mid H_0)\,d\gamma$, así que el cociente es $\Lambda(\gamma)=\eta$, no su inversa.
+- Con la probabilidad de error $P_e$ en ese punto. || $P_e$ depende de las a priori; la ROC no.
+! Al mover el umbral, $dP_D/dP_{FA}=f(\gamma\mid H_1)/f(\gamma\mid H_0)=\Lambda(\gamma)=\eta$.
+
+@ 9 | Prevalencia
+? Al traducir la terminología clínica a pruebas de hipótesis, ¿a qué equivale la prevalencia de una enfermedad?
++ A la probabilidad a priori $P(H_1)$.
+- A la probabilidad de falso positivo $P_{FA}$. || Es una propiedad del test, no de la población.
+- Al valor predictivo positivo $P(H_1\mid\text{test positivo})$. || Esa es una a posteriori: se calcula con la prevalencia, pero no es la prevalencia.
+- A la fracción de tests positivos, $P(\text{test positivo})$. || Esa fracción vale $p_1P_D+p_0P_{FA}$: mezcla la prevalencia con los errores del test.
+! La prevalencia es la fracción de la población que tiene la condición antes de hacer el test: la a priori $p_1=P(H_1)$.
+</script>
+
+<script>
+(function(){
+  // ---------- banco ----------
+  function parse(txt){
+    const qs=[]; let cur=null;
+    txt.split(/\r?\n/).forEach(raw=>{
+      const line=raw.trim(); if(!line) return;
+      const tag=line[0], body=line.slice(1).trim();
+      if(tag==='@'){ const [cap,tit]=body.split('|'); cur={cap:cap.trim(),title:tit.trim(),q:'',opts:[],exp:''}; qs.push(cur); }
+      else if(tag==='?') cur.q=body;
+      else if(tag==='+'||tag==='-'){ const [t,w]=body.split('||'); cur.opts.push({t:t.trim(),why:(w||'').trim(),ok:tag==='+'}); }
+      else if(tag==='!') cur.exp=body;
+    });
+    qs.forEach((q,i)=>q.id=q.cap+'-'+(qs.filter(x=>x.cap===q.cap).indexOf(q)+1));
+    return qs;
+  }
+  const BANK=parse(document.getElementById('banco').textContent);
+
+  // ---------- estado ----------
+  const KEY='cuestionarios-ps-v1';
+  let saved={}; try{ saved=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){}
+  let state={cap:saved.cap||'7', shuffleQ:!!saved.shuffleQ, order:[], i:0, results:[]};
+  function persist(){ try{ localStorage.setItem(KEY,JSON.stringify({cap:state.cap,shuffleQ:state.shuffleQ})); }catch(e){} }
+
+  const shuffle=a=>{ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const math=el=>{ if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false}); };
+
+  const $quiz=document.getElementById('quiz');
+
+  function start(){
+    let pool=BANK.filter(q=>state.cap==='all'||q.cap===state.cap);
+    if(state.shuffleQ) pool=shuffle(pool);
+    state.order=pool.map(q=>({q, opts:shuffle(q.opts)}));
+    state.i=0; state.results=[];
+    document.querySelectorAll('#caps .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cap===state.cap));
+    document.getElementById('shuffleQ').checked=state.shuffleQ;
+    render();
+  }
+
+  function render(){
+    if(state.i>=state.order.length) return summary();
+    const {q,opts}=state.order[state.i], n=state.order.length;
+    const L='ABCD';
+    $quiz.innerHTML=`
+      <div class="meta"><span>Cap. ${q.cap} · Pregunta ${state.i+1} de ${n}</span><span>${state.results.filter(r=>r.ok).length} correctas</span></div>
+      <div class="progress"><div style="width:${100*state.i/n}%"></div></div>
+      <h2>${esc(q.title)}</h2>
+      <p class="q">${esc(q.q)}</p>
+      <ul class="opts" role="radiogroup">${opts.map((o,k)=>`
+        <li><button class="opt" role="radio" aria-checked="false" data-k="${k}"><span class="l">${L[k]})</span><span><span class="t">${esc(o.t)}</span><span class="why hidden"></span></span></button></li>`).join('')}
+      </ul>
+      <label for="just"><strong>Justificación</strong></label>
+      <textarea id="just" placeholder="¿Por qué esa opción es la correcta? ¿Qué falla en las otras?"></textarea>
+      <p class="hint">Escribí al menos una oración antes de corregir.</p>
+      <div class="row"><button class="btn" id="check" disabled>Corregir</button></div>
+      <div id="fb" class="hidden"></div>`;
+    math($quiz);
+    let pick=null;
+    const $just=$quiz.querySelector('#just'), $check=$quiz.querySelector('#check');
+    const upd=()=>{ $check.disabled = pick===null || $just.value.trim().length<20; };
+    $quiz.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+      $quiz.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-checked','false'));
+      b.setAttribute('aria-checked','true'); pick=+b.dataset.k; upd();
+    }));
+    $just.addEventListener('input',upd);
+    $check.addEventListener('click',()=>grade(pick,$just.value.trim()));
+  }
+
+  function grade(pick,just){
+    const {q,opts}=state.order[state.i];
+    const ok=opts[pick].ok, L='ABCD', good=opts.findIndex(o=>o.ok);
+    $quiz.querySelectorAll('.opt').forEach((b,k)=>{
+      b.disabled=true;
+      if(opts[k].ok) b.classList.add('ok'); else if(k===pick) b.classList.add('bad');
+      const w=b.querySelector('.why');
+      if(!opts[k].ok && opts[k].why){ w.textContent='✗ '+opts[k].why; w.classList.remove('hidden'); }
+    });
+    $quiz.querySelector('#just').disabled=true;
+    $quiz.querySelector('#check').remove();
+    $quiz.querySelector('.hint').remove();
+    const fb=$quiz.querySelector('#fb');
+    fb.classList.remove('hidden');
+    fb.innerHTML=`
+      <p class="verdict ${ok?'ok':'bad'}">${ok?'Correcta.':'Incorrecta: la correcta es la '+L[good]+'.'}</p>
+      <div class="box"><h3>Justificación</h3>${esc(q.exp)}</div>
+      <div class="self"><p>Compará con lo que escribiste. ¿Tu justificación estaba bien?</p>
+        <div class="row">
+          <button class="btn ghost" data-s="2">Sí, completa</button>
+          <button class="btn ghost" data-s="1">A medias</button>
+          <button class="btn ghost" data-s="0">No</button>
+        </div></div>`;
+    math(fb); math($quiz.querySelector('.opts'));
+    fb.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>{
+      state.results.push({q,ok,self:+b.dataset.s,just});
+      state.i++; render(); window.scrollTo({top:0,behavior:'smooth'});
+    }));
+  }
+
+  function summary(){
+    const r=state.results, n=r.length, ok=r.filter(x=>x.ok).length;
+    const full=r.filter(x=>x.ok&&x.self===2).length;
+    const repasar=r.filter(x=>!x.ok||x.self<2);
+    const selfTxt=['No','A medias','Completa'];
+    $quiz.innerHTML=`
+      <h2>Resultado</h2>
+      <p class="big">${ok} / ${n}</p>
+      <p>Correctas y bien justificadas: <strong>${full}</strong>.</p>
+      ${repasar.length?`<h3>Para repasar</h3>
+      <table><tr><th>Pregunta</th><th>Opción</th><th>Justificación</th></tr>
+      ${repasar.map(x=>`<tr><td>${x.q.cap}.${x.q.id.split('-')[1]} ${esc(x.q.title)}</td><td>${x.ok?'Bien':'Mal'}</td><td>${selfTxt[x.self]}</td></tr>`).join('')}
+      </table>`:'<p>Nada para repasar.</p>'}
+      <div class="row"><button class="btn" id="again">Empezar de nuevo</button></div>`;
+    math($quiz);
+    $quiz.querySelector('#again').addEventListener('click',start);
+  }
+
+  document.querySelectorAll('#caps .chip').forEach(b=>b.addEventListener('click',()=>{ state.cap=b.dataset.cap; persist(); start(); }));
+  document.getElementById('shuffleQ').addEventListener('change',e=>{ state.shuffleQ=e.target.checked; persist(); start(); });
+
+  window.addEventListener('DOMContentLoaded',start);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+"""Escena 09 — Las tres barras ρ, 1, ρ: con ρ = 0,4 el espectro existe; con ρ = 0,6, no."""
+from comun.escena import *
+
+
+class CorrelacionAUnPaso(EscenaCurso):
+    ESCENA = "09"
+
+    def construct(self):
+        self.parte_b1()
+        self.parte_b2()
+        self.parte_b3()
+        self.wait(1.0)
+        self.limpiar()
+
+    def parte_b1(self):
+        U = Lienzo(ancho=9.0, alto=2.2, t_rango=(0, 11), v_max=2.6, centro=(0.0, 1.9))
+        y = 1.1 * serie(31, 12, 0.8)
+        pts = VGroup(*[Dot(U.p(k, y[k]), radius=0.1, color=SENAL) for k in range(12)])
+        hilos = hilos_entre(pts, color=INK, ancho=2)
+        rho = MathTex(r"\rho", color=AMBAR).scale(1.0).move_to((pts[4].get_center() + pts[5].get_center()) / 2 + UP * 1.2)
+        lazo = Line(pts[4].get_center() + UP * 0.9, pts[5].get_center() + UP * 0.9, color=AMBAR, stroke_width=3)
+        lejos = DashedLine(pts[2].get_center() + DOWN * 1.2, pts[4].get_center() + DOWN * 1.2, color=ROJO, stroke_width=3)
+        cero = MathTex("0", color=ROJO).scale(0.7).move_to((pts[2].get_center() + pts[4].get_center()) / 2 + DOWN * 1.55)
+        c = MathTex(r"C_{xx}[m]", color=TXT).scale(0.9).move_to([-5.9, -0.7, 0])
+        T = Tallos([0.4, 1.0, 0.4], centro=(-2.2, -2.0), paso=1.3, unidad=1.5, color=SENAL)
+        et = VGroup(MathTex(r"\rho", color=AMBAR).scale(0.8).next_to(T.pos(0), UP, buff=0.1),
+                    MathTex(r"1", color=TXT).scale(0.8).next_to(T.pos(1), UP, buff=0.1),
+                    MathTex(r"\rho", color=AMBAR).scale(0.8).next_to(T.pos(2), UP, buff=0.1))
+        c7 = etiqueta("capítulo 7", INK, 0.55).move_to([3.4, -0.7, 0])
+        eje = Line([1.7, -2.2, 0], [5.9, -2.2, 0], color=INK, stroke_width=3)
+        tk = VGroup(MathTex("-1", color=INK).scale(0.6).move_to([1.7, -2.65, 0]), MathTex("1", color=INK).scale(0.6).move_to([5.9, -2.65, 0]))
+        dot = Dot([5.1, -2.2, 0], radius=0.13, color=AMBAR)
+        interr = MathTex("0{,}6\\;?", color=AMBAR).scale(0.8).move_to([4.6, -1.5, 0])
+        with self.narrar("b1"):
+            self.en("vecinas")
+            self.play(FadeIn(pts), Create(hilos), Create(U.base()), run_time=self.dur(0.9))
+            self.en("rho")
+            self.play(Create(lazo), FadeIn(rho), run_time=0.5)
+            self.en("ninguna")
+            self.play(Create(lejos), FadeIn(cero), run_time=0.5)
+            self.en("autocov")
+            self.play(FadeIn(c), run_time=0.4)
+            self.en("barras")
+            self.play(Create(T.base), *[GrowFromEdge(t, DOWN) for t in T.tallos], *[FadeIn(p) for p in T.puntos],
+                      FadeIn(et), run_time=self.dur(0.8))
+            self.en("cap7")
+            self.play(FadeIn(c7), run_time=0.4)
+            self.en("rango")
+            self.play(Create(eje), FadeIn(tk), FadeIn(dot), run_time=self.dur(0.7))
+            self.en("pregunta")
+            self.play(dot.animate.move_to([5.1 + 0.2 * 0, -2.2, 0]), FadeIn(interr), run_time=0.4)
+
+    def parte_b2(self):
+        P = Lienzo(ancho=6.4, alto=2.8, t_rango=(-3.4, 3.4), v_max=2.2, centro=(2.8, 1.3))
+        ej = ejes_L(P, -0.5, 2.1)
+        tpi = VGroup(MathTex(r"-\pi", color=INK).scale(0.55).move_to(P.p(-np.pi, -0.6)),
+                     MathTex(r"\pi", color=INK).scale(0.55).move_to(P.p(np.pi, -0.6)))
+        examen = etiqueta("real ✓   par ✓   ≥ 0 ?", AMBAR, 0.6).move_to([2.8, 3.6, 0])
+        T = Tallos([0.4, 1.0, 0.4], centro=(-5.0, 0.6), paso=0.7, unidad=1.2, color=SENAL)
+        fl = Arrow([-3.9, 0.9, 0], [-2.6, 0.9, 0], color=INK, buff=0, stroke_width=4, max_tip_length_to_length_ratio=0.3)
+        f = formula("1", "+", r"2\rho", r"\cos\Omega", escala=1.0).move_to([-4.6, 3.0, 0])
+        r04 = MathTex(r"\rho=0{,}4", color=AMBAR).scale(0.9).move_to([-1.6, 3.0, 0])
+        filas = [MathTex(r"\Omega=0\;\to\;1{,}8", color=TXT).scale(0.8).move_to([-4.2, -0.1, 0]),
+                 MathTex(r"\Omega=\tfrac{\pi}{2}\;\to\;1", color=TXT).scale(0.8).move_to([-4.2, -0.8, 0]),
+                 MathTex(r"\Omega=\pi\;\to\;0{,}2", color=TXT).scale(0.8).move_to([-4.2, -1.5, 0])]
+        curva = curva_f(P, espectro_3b(0.4), -np.pi, np.pi, AMBAR, 5)
+        ok = tilde(VERDE, 0.5).move_to([6.1, 2.6, 0])
+        bulto = area_f(P, espectro_3b(0.4), -1.0, 1.0, AMBAR, 0.35)
+        Lt = Lienzo(ancho=6.4, alto=1.3, t_rango=(0, 10), v_max=2.4, centro=(2.8, -2.4))
+        t = np.linspace(0, 10, 220)
+        lenta = Lt.curva(t, 1.0 * np.sin(0.9 * t) + 0.12 * np.sin(5 * t), SENAL, 3.5)
+        dos = VGroup(Dot(Lt.p(2.9, np.sin(0.9 * 2.9) + 0.12 * np.sin(14.5)), radius=0.1, color=AMBAR),
+                     Dot(Lt.p(3.2, np.sin(0.9 * 3.2) + 0.12 * np.sin(16)), radius=0.1, color=AMBAR))
+        despacio = etiqueta("cambia despacio", INK, 0.5).move_to([2.8, -3.5, 0])
+        with self.narrar("b2"):
+            self.en("examen")
+            self.corte()
+            self.play(FadeIn(examen), run_time=0.4)
+            self.en("espectro")
+            self.play(Create(T.base), *[GrowFromEdge(t_, DOWN) for t_ in T.tallos], *[FadeIn(p) for p in T.puntos],
+                      Create(fl), Create(ej), FadeIn(tpi), run_time=self.dur(0.9))
+            self.en("formula")
+            self.play(FadeIn(f), run_time=self.dur(0.9))
+            self.en("rho04")
+            self.pop(r04)
+            self.en("t18")
+            self.play(FadeIn(filas[0]), run_time=0.4)
+            self.en("t1")
+            self.play(FadeIn(filas[1]), run_time=0.4)
+            self.en("t02")
+            self.play(FadeIn(filas[2]), run_time=0.4)
+            self.en("positivo")
+            self.play(Create(curva), run_time=self.dur(1.0))
+            self.en("existe")
+            self.pop(ok)
+            self.en("bajas")
+            self.play(FadeIn(bulto), run_time=0.4)
+            self.en("parecidas")
+            self.play(Create(Lt.base()), Create(lenta), FadeIn(dos), run_time=self.dur(0.9))
+            self.en("despacio")
+            self.play(FadeIn(despacio), run_time=0.4)
+
+    def parte_b3(self):
+        P = Lienzo(ancho=7.4, alto=3.2, t_rango=(-3.4, 3.4), v_max=2.2, centro=(-1.4, 0.4))
+        ej = ejes_L(P, -0.7, 2.1)
+        tpi = VGroup(MathTex(r"-\pi", color=INK).scale(0.55).move_to(P.p(-np.pi, -0.95)),
+                     MathTex(r"\pi", color=INK).scale(0.55).move_to(P.p(np.pi, -0.95)))
+        rho = ValueTracker(0.4)
+        curva = always_redraw(lambda: curva_f(P, espectro_3b(rho.get_value()), -np.pi, np.pi, AMBAR, 5, n=120))
+        rl = [MathTex(r"\rho=" + num_tex(v), color=AMBAR).scale(1.0).move_to([-1.4, 3.3, 0]) for v in (0.4, 0.6, 0.5)]
+        vpi = DashedLine(P.p(np.pi, -0.7), P.p(np.pi, 2.0), color=INK, stroke_width=2)
+        cosl = MathTex(r"\cos\pi=-1", color=TXT).scale(0.9).move_to([5.3, 2.8, 0])
+        cuenta = MathTex(r"1-1{,}2", color=TXT).scale(0.9).move_to([5.3, 1.8, 0])
+        neg = MathTex(r"=-0{,}2", color=ROJO).scale(1.0).move_to([5.3, 0.8, 0])
+        sel = sello("no existe", ROJO).scale(0.9).move_to([5.3, -0.4, 0])
+        minimo = Dot(P.p(np.pi, 1 - 2 * 0.6), radius=0.11, color=ROJO)
+        formu = MathTex(r"1-2|\rho|", color=AMBAR).scale(1.0).move_to([5.3, -1.6, 0])
+        nobaje = MathTex(r"1-2|\rho|\ge0", color=AMBAR).scale(1.0).move_to([5.3, -1.6, 0])
+        medio = MathTex(r"|\rho|\le\tfrac12", color=VERDE).scale(1.1).move_to([5.3, -2.7, 0])
+        with self.narrar("b3"):
+            self.en("rho06")
+            self.corte()
+            self.add(curva)
+            self.play(FadeIn(rl[0]), run_time=0.3)
+            self.play(Create(ej), FadeIn(tpi), run_time=0.4)
+            self.play(rho.animate.set_value(0.6), run_time=self.dur(1.2))
+            self.play(ReplacementTransform(rl[0], rl[1]), run_time=0.3)
+            self.en("cos")
+            self.play(Create(vpi), FadeIn(cosl), run_time=0.5)
+            self.en("cuenta")
+            self.play(FadeIn(cuenta), run_time=0.4)
+            self.en("negativo")
+            self.pop(neg)
+            self.play(FadeIn(minimo), run_time=0.3)
+            self.en("noexiste")
+            self.pop(sel)
+            self.en("bajo")
+            self.play(FadeIn(formu), run_time=0.5)
+            self.en("formula")
+            self.play(ReplacementTransform(formu, nobaje), run_time=0.4)
+            self.en("nobaje")
+            self.play(rho.animate.set_value(0.5), FadeOut(minimo), ReplacementTransform(rl[1], rl[2]), run_time=self.dur(0.9))
+            self.en("medio")
+            self.pop(medio)
+        curva.clear_updaters()

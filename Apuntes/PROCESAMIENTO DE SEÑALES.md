@@ -1506,7 +1506,7 @@ $$\gamma_{yx}(e^{j\Omega})=\frac{D_{yx}(e^{j\Omega})}{\sqrt{D_{yy}(e^{j\Omega})D
 es la **función de coherencia**: el coeficiente de correlación, pero en función de la frecuencia. Y el MMSE total es
 $$\text{MMSE}=\frac{1}{2\pi}\int_{-\pi}^{\pi}D_{yy}(e^{j\Omega})\Big(1-|\gamma_{yx}(e^{j\Omega})|^2\Big)\ d\Omega$$
 
-Compará con $\sigma_Y^2(1-\rho^2)$ del capítulo 8. Es lo mismo, integrado sobre todas las frecuencias. **Donde la coherencia se acerca a 1, la estimación es buena en esa banda; donde se acerca a 0, el filtro no puede hacer nada.**
+Compará con $\sigma_Y^2(1-\rho^2)$ del capítulo 8. Es lo mismo, integrado sobre todas las frecuencias. **Donde la coherencia se acerca a 1, la estimación es buoena en esa banda; donde se acerca a 0, el filtro no puede hacer nada.**
 
 >**Ejemplo canónico: señal en ruido aditivo**
 >Sea $x[n]=2y[n]+v[n]$, con el ruido $v$ no correlacionado con la señal $y$. Entonces

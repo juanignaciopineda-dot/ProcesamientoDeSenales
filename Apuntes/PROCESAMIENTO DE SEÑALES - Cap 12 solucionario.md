@@ -402,7 +402,7 @@ La clave de todo el ejercicio es $p^2[n]=1$: cada vez que aparece $p[n]$ multipl
 ###### **Resolución**
 **a)** $p[n]=\pm1$ equiprobable: $\mu_p=E[p]=0$. Como $p\perp\!\!\!\perp y$ y ambos de media nula, $\mu_q=E[p[n]y[n]]=\mu_p\mu_y=0$.
 
-$R_{pp}[m]$: en $m=0$, $E[p^2]=1$ (siempre, porque $p=\pm1$); en $m\neq0$, i.i.d. da $E[p[n{+}m}]]E[p[n]]=0$. Entonces $R_{pp}[m]=\delta[m]$.
+$R_{pp}[m]$: en $m=0$, $E[p^2]=1$ (siempre, porque $p=\pm1$); en $m\neq0$, i.i.d. da $E[p[n{+}m]]E[p[n]]=0$. Entonces $R_{pp}[m]=\delta[m]$.
 
 $$R_{qq}[m]=E[p[n{+}m]y[n{+}m]p[n]y[n]]=E[p[n{+}m]p[n]]\,E[y[n{+}m]y[n]]=R_{pp}[m]\,R_{yy}[m]=\delta[m]\,R_{yy}[m]$$
 $$\boxed{\ \mu_p=0,\quad \mu_q=0, \quad R_{pp}[m]=\delta[m], \quad R_{qq}[m]=R_{yy}[0]\,\delta[m]\ }$$

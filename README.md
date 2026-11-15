@@ -7,7 +7,7 @@ Apuntes y material propio de la materia Procesamiento de Señales, basados en
 
 ```
 Apuntes/          Apuntes en Markdown (formato Obsidian), uno por capítulo (7 a 13)
-Animaciones/      Animaciones en Manim + scripts interactivos por capítulo (7 a 13)
+Animaciones/      Videoclases narradas (Manim + voz), un guion base por capítulo (7 a 13)
 Libros/           Bibliografía en PDF
 ```
 
@@ -23,11 +23,12 @@ de [Obsidian](https://obsidian.md/) (usan sintaxis `[[wikilinks]]` y
 
 ### Animaciones
 
-`Animaciones/Capitulo N/` trae, por cada capítulo, videos hechos con
-[Manim](https://www.manim.community/) que acompañan los conceptos del
-apunte, y scripts interactivos con sliders (matplotlib) para jugar con los
-parámetros. Cada carpeta tiene su propio `LEEME.md` con el detalle de las
-escenas y cómo renderizarlas o correrlas.
+`Animaciones/` tiene las videoclases de la materia para YouTube: episodios
+de ~10 minutos, narrados con voz neuronal (edge-tts) y animados con
+[Manim](https://www.manim.community/). Cada capítulo tiene un `guion_base.md`
+con la narración completa, y cada episodio su propio `guion.md` y sus escenas.
+El método de trabajo, las pautas y el estado del proyecto están en
+[`Animaciones/README.md`](Animaciones/README.md).
 
 ### Libros
 
@@ -38,6 +39,5 @@ materia, usada como referencia para los apuntes.
 
 Para los apuntes, abrir la carpeta `Apuntes/` como vault de Obsidian.
 
-Para las animaciones, cada capítulo trae instrucciones propias de
-instalación y uso en su `LEEME.md` (por ejemplo,
-[`Animaciones/Capitulo 10/LEEME.md`](Animaciones/Capitulo%2010/LEEME.md)).
+Para las animaciones, ver [`Animaciones/README.md`](Animaciones/README.md)
+(§8: cómo renderizar un episodio; §10: entorno).

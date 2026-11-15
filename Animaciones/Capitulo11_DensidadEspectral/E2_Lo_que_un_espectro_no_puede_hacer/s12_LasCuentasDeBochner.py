@@ -1,0 +1,138 @@
+"""Escena 12 — Las cuentas de Bochner: fabricar ρ = 0,4, intentar ρ = 0,6 y los extremos."""
+from comun.escena import *
+
+
+class LasCuentasDeBochner(EscenaCurso):
+    ESCENA = "12"
+
+    def construct(self):
+        self.parte_b1()
+        self.parte_b2()
+        self.parte_b3()
+        self.wait(1.0)
+        self.limpiar()
+
+    def parte_b1(self):
+        r1 = formula(r"E[y^2]=", r"\frac{2^2+1^2}{5}", r"=1", escala=1.1).move_to([-2.8, 3.2, 0])
+        r2 = formula(r"E\big[w[n]\,w[n{-}1]\big]", "=0", escala=1.0).move_to([-2.8, 2.0, 0])
+        r3 = formula(r"E\big[y[n]\,y[n{-}1]\big]=", r"\frac{2\cdot1}{5}", r"=0{,}4", escala=1.1).move_to([-2.5, 0.8, 0])
+        r3[2].set_color(VERDE)
+        r2[1].set_color(VERDE)
+        xs = (-3.6, 0.0, 3.6)
+        coins = [VGroup(RoundedRectangle(corner_radius=0.2, width=1.5, height=0.7, color=AMBAR, stroke_width=3).set_fill(AMBAR, 0.25),
+                        MathTex(t, color=TXT).scale(0.55)).move_to([x, -3.2, 0])
+                 for x, t in zip(xs, (r"w[n{-}2]", r"w[n{-}1]", r"w[n]"))]
+        ys = [VGroup(RoundedRectangle(corner_radius=0.1, width=1.5, height=0.65, color=SENAL, stroke_width=3).set_fill(SENAL, 0.15),
+                     MathTex(t, color=TXT).scale(0.6)).move_to([x, -1.2, 0])
+              for x, t in zip((-1.8, 1.8), (r"y[n{-}1]", r"y[n]"))]
+        for g in ys:
+            g[1].move_to(g[0])
+        enl = [Line(coins[0][0].get_top(), ys[0].get_bottom() + LEFT * 0.4, color=INK, stroke_width=2.5),
+               Line(coins[1][0].get_top(), ys[0].get_bottom() + RIGHT * 0.4, color=AMBAR, stroke_width=4),
+               Line(coins[1][0].get_top(), ys[1].get_bottom() + LEFT * 0.4, color=AMBAR, stroke_width=4),
+               Line(coins[2][0].get_top(), ys[1].get_bottom() + RIGHT * 0.4, color=INK, stroke_width=2.5)]
+        w_a = MathTex("2", color=AMBAR).scale(0.8).move_to((enl[1].get_center()) + RIGHT * 0.3)
+        w_b = MathTex("1", color=AMBAR).scale(0.8).move_to((enl[2].get_center()) + LEFT * 0.3)
+        with self.narrar("b1"):
+            self.en("potencia")
+            self.play(FadeIn(r1[0]), run_time=0.4)
+            self.en("cuadrados")
+            self.play(FadeIn(r1[1]), run_time=0.5)
+            self.en("uno")
+            self.pop(r1[2])
+            self.en("cruzados")
+            self.play(FadeIn(r2[0]), run_time=0.5)
+            self.en("indep")
+            self.pop(r2[1])
+            self.en("comparten")
+            self.play(*[FadeIn(c) for c in coins], *[FadeIn(y) for y in ys], *[Create(e) for e in enl], run_time=self.dur(0.9))
+            self.en("pesos")
+            self.play(FadeIn(w_a), FadeIn(w_b), run_time=0.4)
+            self.en("dospor")
+            self.play(FadeIn(r3[0]), FadeIn(r3[1]), run_time=0.6)
+            self.en("fabricado")
+            self.pop(r3[2])
+            self.play(FadeIn(tilde(VERDE, 0.4).move_to([5.8, 0.8, 0])), run_time=0.3)
+
+    def parte_b2(self):
+        t = MathTex(r"\rho=0{,}6\;?", color=AMBAR).scale(1.2).move_to([0, 3.3, 0])
+        f = formula("y[n]", "=", r"a\,w[n]", r"+\,b\,w[n{-}1]", escala=1.1).move_to([0, 2.2, 0])
+        s = MathTex(r"a^2+b^2=1", color=TXT).scale(1.0).move_to([-3.5, 0.9, 0])
+        p = MathTex(r"ab=0{,}6", color=TXT).scale(1.0).move_to([3.5, 0.9, 0])
+        r = formula(r"(a-b)^2", "=", escala=1.0).move_to([-3.8, -0.5, 0])
+        v = MathTex(r"1-2\cdot0{,}6", color=TXT).scale(1.0).move_to([-1.0, -0.5, 0])
+        m = MathTex(r"=-0{,}2", color=ROJO).scale(1.1).move_to([1.5, -0.5, 0])
+        sel = sello("cuadrado negativo", ROJO).scale(0.9).move_to([4.8, -0.6, 0])
+        ec = VGroup(s, p, r, v, m)
+        lim = MathTex(r"1+2\rho\cos\pi=-0{,}2", color=ROJO).scale(0.9).move_to([0, -2.4, 0])
+        etq = etiqueta("el espectro en Ω = π", INK, 0.5).move_to([0, -3.1, 0])
+        with self.narrar("b2"):
+            self.en("seis")
+            self.corte()
+            self.pop(t)
+            self.en("coefs")
+            self.play(FadeIn(f), run_time=0.6)
+            self.en("suma")
+            self.play(FadeIn(s), run_time=0.5)
+            self.en("prod")
+            self.play(FadeIn(p), run_time=0.5)
+            self.en("resta")
+            self.play(FadeIn(r), run_time=0.5)
+            self.en("vale")
+            self.play(FadeIn(v), run_time=0.5)
+            self.en("menos02")
+            self.pop(m)
+            self.en("cuadneg")
+            self.pop(sel)
+            self.en("nohay")
+            self.play(Create(tachar(ec)), run_time=0.5)
+            self.en("limite")
+            self.play(FadeIn(lim), FadeIn(etq), run_time=0.6)
+
+    def parte_b3(self):
+        izq = RoundedRectangle(corner_radius=0.14, width=4.2, height=1.1, color=AMBAR, stroke_width=3).set_fill(AMBAR, 0.1).move_to([-3.9, 3.0, 0])
+        der = RoundedRectangle(corner_radius=0.14, width=4.2, height=1.1, color=SENAL, stroke_width=3).set_fill(SENAL, 0.1).move_to([3.9, 3.0, 0])
+        eq = MathTex(r"\Longleftrightarrow", color=TXT).scale(1.5).move_to([0, 3.0, 0])
+        t1 = etiqueta("espectro ≥ 0", TXT, 0.65).move_to(izq)
+        t2 = etiqueta("existe el filtro", TXT, 0.65).move_to(der)
+        boch = self.palabra("Bochner", AMBAR, 0.9).move_to([0, 1.8, 0])
+        ca = MathTex(r"\rho=\tfrac12", color=AMBAR).scale(1.0).move_to([-3.6, 0.8, 0])
+        cb = MathTex(r"\rho=-\tfrac12", color=AMBAR).scale(1.0).move_to([3.6, 0.8, 0])
+        fa = MathTex(r"(1,\,1)/\sqrt2", color=TXT).scale(0.9).move_to([-3.6, 0.0, 0])
+        fb = MathTex(r"(1,\,-1)/\sqrt2", color=TXT).scale(0.9).move_to([3.6, 0.0, 0])
+        La = Lienzo(ancho=4.4, alto=1.1, t_rango=(0, 10), v_max=1.3, centro=(-3.6, -1.4))
+        Lb = Lienzo(ancho=4.4, alto=1.1, t_rango=(0, 10), v_max=1.3, centro=(3.6, -1.4))
+        tt = np.linspace(0, 10, 200)
+        suave = La.curva(tt, np.sin(0.8 * tt), SENAL, 4)
+        alterna = Lb.curva(np.arange(0, 11), np.array([1, -1] * 5 + [1]) * 0.9, SENAL, 4)
+        prom = etiqueta("promedia", INK, 0.5).move_to([-3.6, -2.4, 0])
+        rest = etiqueta("resta", INK, 0.5).move_to([3.6, -2.4, 0])
+        caja_f = caja("(2, 1) / √5", AZUL, ancho=3.0, alto=0.8, scale=0.55).move_to([-0.6, -3.5, 0])
+        cand = candado(AMBAR).scale(0.8).move_to([1.5, -3.5, 0])
+        volv = etiqueta("volverá", AMBAR, 0.5).next_to(cand, RIGHT, buff=0.2)
+        with self.narrar("b3"):
+            self.en("casualidad")
+            self.corte()
+            self.play(FadeIn(izq), FadeIn(der), run_time=0.5)
+            self.en("preg1")
+            self.play(FadeIn(t1), run_time=0.4)
+            self.en("preg2")
+            self.play(FadeIn(t2), FadeIn(eq), run_time=0.4)
+            self.en("misma")
+            self.resaltar(eq, color=AMBAR, escala=1.3)
+            self.en("dicebochner")
+            self.pop(boch)
+            self.en("extremos")
+            self.play(Create(Line([0, 1.3, 0], [0, -2.9, 0], color=INK, stroke_width=1.5)), run_time=0.4)
+            self.en("medio")
+            self.play(FadeIn(ca), run_time=0.3)
+            self.en("iguales")
+            self.play(FadeIn(fa), run_time=0.4)
+            self.en("promedia")
+            self.play(Create(La.base()), Create(suave), FadeIn(prom), run_time=self.dur(0.8))
+            self.en("menosmedio")
+            self.play(FadeIn(cb), run_time=0.3)
+            self.en("resta")
+            self.play(FadeIn(fb), Create(Lb.base()), Create(alterna), FadeIn(rest), run_time=self.dur(0.8))
+            self.en("guarda")
+            self.play(FadeIn(caja_f), FadeIn(cand), FadeIn(volv), run_time=0.6)

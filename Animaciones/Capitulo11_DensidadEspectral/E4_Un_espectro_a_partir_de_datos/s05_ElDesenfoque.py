@@ -1,0 +1,147 @@
+"""Escena 05 — El triángulo desenfoca el espectro: multiplicar en el tiempo es convolucionar en frecuencia."""
+from comun.escena import *
+
+W = np.linspace(-8, 8, 321)
+VERD = psd_tele(W)
+
+
+def desenfocado(largo: float) -> np.ndarray:
+    """El espectro verdadero convolucionado con una sinc² de ancho ~3/largo (normalizada)."""
+    k = np.sinc(W * largo / 3.0) ** 2
+    return np.convolve(VERD, k, mode="same") / k.sum()
+
+
+class ElDesenfoque(EscenaCurso):
+    ESCENA = "05"
+
+    def construct(self):
+        self.cuentas()
+        self.desenfoque()
+        self.ventana_larga()
+        self.wait(1.0)
+        self.limpiar()
+
+    def cuentas(self):
+        T = Lienzo(ancho=10.5, alto=4.0, t_rango=(-10, 10), v_max=1.25, centro=(0, -0.4))
+        ej = ejes_L(T, -0.1, 1.2)
+        tri = T.curva([-10, 0, 10], [0, 1, 0], AMBAR, 5)
+        etq_v = etiqueta("ventana de 10 s", AMBAR, 0.55).move_to([-4.6, 3.4, 0])
+        etq_l = etiqueta("ventana larga", AMBAR, 0.55).move_to([-4.6, 3.4, 0])
+
+        def punto(t, v, color=AMBAR):
+            return VGroup(Dot(T.p(t, v), radius=0.1, color=color), DashedLine(T.p(t, v), T.p(t, 0), color=color, stroke_width=2.5))
+
+        d0, d5, d10 = punto(0, 1), punto(5, 0.5), punto(10, 0, ROJO)
+        l0 = MathTex(r"\tau=0\to 1", color=TXT).scale(0.7).move_to([0, -1.35, 0])
+        l5 = MathTex(r"\tau=5\,\mathrm{s}\to\tfrac12", color=TXT).scale(0.7).move_to([T.p(5, 0)[0] + 0.3, -1.35, 0])
+        l10 = MathTex(r"\tau=10\,\mathrm{s}\to 0", color=TXT).scale(0.7).move_to([T.p(10, 0)[0] - 0.45, -1.95, 0])
+        auto = curva_f(T, r_tele, -10, 10, SENAL, 4.5, n=401)
+        marca2 = DashedLine(T.p(2, -0.1), T.p(2, 1.2), color=VERDE, stroke_width=3)
+        l2 = MathTex(r"2\,\mathrm{s}", color=VERDE).scale(0.65).move_to(T.p(2, 0) + DOWN * 0.78 + RIGHT * 1.15)
+        d_casi = Dot(T.p(2, 0.8), radius=0.1, color=VERDE)
+        l_casi = MathTex(r"0{,}8", color=VERDE).scale(0.75).move_to(T.p(2, 0.8) + UP * 0.5 + RIGHT * 0.5)
+        ok = sello("casi no estropea", VERDE).move_to([-4.2, 2.0, 0])
+        with self.narrar("b1"):
+            self.en("diez")
+            self.play(Create(ej), Create(tri), FadeIn(etq_v), run_time=self.dur(0.9))
+            self.en("tau0")
+            self.play(FadeIn(d0), FadeIn(l0), run_time=self.dur(0.4))
+            self.en("tau5")
+            self.play(FadeIn(d5), FadeIn(l5), run_time=self.dur(0.4))
+            self.en("tau10")
+            self.play(FadeIn(d10), FadeIn(l10), run_time=self.dur(0.4))
+            self.en("autocorr")
+            self.play(Create(auto), run_time=self.dur(0.9))
+            self.en("apaga")
+            self.play(Create(marca2), FadeIn(l2), run_time=self.dur(0.5))
+            self.en("casi")
+            self.play(FadeIn(d_casi), FadeIn(l_casi), run_time=self.dur(0.4))
+            self.en("larga1")
+            self.play(ReplacementTransform(etq_v, etq_l), run_time=self.dur(0.4))
+            self.en("nada")
+            self.pop(ok)
+
+    def desenfoque(self):
+        F = Lienzo(ancho=7.0, alto=2.6, t_rango=(-8, 8), v_max=1.4, centro=(1.3, -1.6))
+        K = Lienzo(ancho=3.2, alto=1.8, t_rango=(-8, 8), v_max=1.3, centro=(-5.0, -1.6))
+        ej_f = ejes_L(F, 0, 1.25)
+        ej_k = ejes_L(K, 0, 1.2)
+        verdadera = curva_f(F, psd_tele, -8, 8, SENAL, 5)
+        borrosa = F.curva(W, desenfocado(1.2), ESTIMACION, 5)
+        kern = K.curva(W, np.sinc(W * 1.2 / 3.0) ** 2, AMBAR, 4)
+        d = ValueTracker(-6.0)
+        campana_mov = always_redraw(lambda: F.curva(W, 0.7 * np.sinc((W - d.get_value()) * 1.2 / 3.0) ** 2, AMBAR, 2.5, 0.8))
+        mult = etiqueta("producto en el tiempo", TXT, 0.55).move_to([-3.4, 3.1, 0])
+        conv = etiqueta("convolución en frecuencia", TXT, 0.55).move_to([3.5, 3.1, 0])
+        dbl = DoubleArrow([-1.0, 3.1, 0], [0.4, 3.1, 0], color=INK, buff=0, stroke_width=3, max_tip_length_to_length_ratio=0.25)
+        palabra_d = self.palabra("desenfocar", AMBAR, 0.95).move_to([0.4, 1.5, 0])
+        campana = K.curva(W, np.sinc(W * 1.2 / 3.0) ** 2, AMBAR, 4)
+        f1 = foto().scale(1.0).move_to([5.9, 1.2, 0])
+        f2 = foto(nitida=False).scale(1.0).move_to([5.9, 1.2, 0])
+        tri_mini = Lienzo(ancho=1.6, alto=0.8, t_rango=(-10, 10), v_max=1.25, centro=(-5.0, 1.4))
+        tri_c = tri_mini.curva([-10, 0, 10], [0, 1, 0], AMBAR, 4)
+        fl_k = flecha([-5.0, 0.9, 0], [-5.0, -0.2, 0], AMBAR)
+        et_s = MathTex(r"\mathrm{sinc}^2", color=AMBAR).scale(0.8).move_to([-5.0, -3.0, 0])
+        with self.narrar("b2"):
+            self.en("freq")
+            self.corte()
+            self.play(Create(ej_f), Create(verdadera), run_time=self.dur(0.7))
+            self.en("mult")
+            self.play(FadeIn(mult), run_time=0.4)
+            self.en("conv")
+            self.play(Create(dbl), FadeIn(conv), run_time=0.5)
+            self.en("campana")
+            self.play(Create(ej_k), Create(campana), run_time=self.dur(0.7))
+            self.en("desenfocar")
+            self.pop(palabra_d)
+            self.en("vecinos")
+            self.add(campana_mov)
+            self.play(d.animate(rate_func=linear).set_value(6.0), Create(borrosa, rate_func=linear), run_time=self.dur(2.4))
+            self.en("foto")
+            self.play(FadeOut(campana_mov), FadeIn(f1), run_time=0.3)
+            self.play(ReplacementTransform(f1, f2), run_time=self.dur(0.8))
+            self.en("aqui")
+            self.resaltar(campana, color=AMBAR)
+            self.en("trans")
+            self.play(FadeIn(tri_c), Create(fl_k), run_time=self.dur(0.6))
+            self.en("sinc2")
+            self.play(FadeIn(et_s), run_time=self.dur(0.4))
+        campana_mov.clear_updaters()
+
+    def ventana_larga(self):
+        Lt = ValueTracker(1.0)
+        F = Lienzo(ancho=6.6, alto=3.2, t_rango=(-8, 8), v_max=1.4, centro=(3.2, -0.8))
+        K = Lienzo(ancho=4.2, alto=1.6, t_rango=(-8, 8), v_max=1.3, centro=(-3.9, -2.2))
+        ej_f = ejes_L(F, 0, 1.25)
+        ej_k = ejes_L(K, 0, 1.2)
+        verdadera = curva_f(F, psd_tele, -8, 8, SENAL, 5)
+        medida = always_redraw(lambda: F.curva(W, desenfocado(Lt.get_value()), ESTIMACION, 5))
+        kern = always_redraw(lambda: K.curva(W, np.sinc(W * Lt.get_value() / 3.0) ** 2, AMBAR, 4))
+        vent = always_redraw(lambda: Rectangle(width=0.5 * Lt.get_value(), height=0.9, color=AMBAR, stroke_width=3.5)
+                             .set_fill(AMBAR, 0.15).move_to([-3.9, 1.0, 0]))
+        et_v = etiqueta("ventana", AMBAR, 0.5).move_to([-3.9, 2.0, 0])
+        f = formula("medido", "=", "verdadero", r"\ast", r"\mathrm{sinc}^2", escala=0.85,
+                    colores={0: ESTIMACION, 2: SENAL, 4: AMBAR}).move_to([0, 3.2, 0])
+        lim = MathTex(r"T\to\infty", color=AMBAR).scale(1.0).move_to([-3.9, -0.1, 0])
+        ok = tilde(VERDE, 0.6).move_to([6.0, 0.9, 0])
+        with self.narrar("b3"):
+            self.en("medimos")
+            self.corte()
+            self.add(medida, kern, vent)
+            self.play(Create(ej_f), Create(ej_k), Create(verdadera), FadeIn(et_v), FadeIn(f), run_time=self.dur(1.2))
+            self.en("depende")
+            self.resaltar(vent, color=AMBAR)
+            self.en("larga")
+            self.play(Lt.animate.set_value(2.5), run_time=self.dur(1.1))
+            self.en("estrecha")
+            self.play(Lt.animate.set_value(3.5), run_time=self.dur(1.0))
+            self.en("nitido")
+            self.play(Lt.animate.set_value(4.8), run_time=self.dur(1.8))
+            self.en("sinlimite")
+            self.play(Lt.animate.set_value(10.0), run_time=self.dur(2.5))
+            self.en("desaparece")
+            self.pop(ok)
+            self.en("teorema")
+            self.pop(lim)
+        for m in (medida, kern, vent):
+            m.clear_updaters()

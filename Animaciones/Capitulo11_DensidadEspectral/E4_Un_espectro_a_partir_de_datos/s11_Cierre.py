@@ -1,0 +1,58 @@
+"""Escena 11 — Cierre: resumen y anuncio del E5, «Cortar sin romper»."""
+from comun.escena import *
+
+
+class Cierre(EscenaCurso):
+    ESCENA = "11"
+
+    def construct(self):
+        T = Lienzo(ancho=5.0, alto=1.0, t_rango=(0, 4), v_max=2.6, centro=(-3.5, 3.2))
+        traza_ = T.curva(np.linspace(0, 4, 160), 0.8 * serie(5, 160, 0.0), RUIDO, 2.6)
+        marco = marco_t(T, 0.5, 3.5, 1.2, AMBAR, 0.12)
+        F = Lienzo(ancho=5.0, alto=2.2, t_rango=(-8, 8), v_max=1.4, centro=(-3.5, 0.6))
+        W = np.linspace(-8, 8, 321)
+        k = np.sinc(W / 3.0) ** 2
+        borrosa = F.curva(W, np.convolve(psd_tele(W), k, mode="same") / k.sum(), ESTIMACION, 4.5)
+        ver = curva_f(F, psd_tele, -8, 8, SENAL, 4)
+        et_v = etiqueta("ventana", AMBAR, 0.55).move_to([-3.5, -0.9, 0])
+        P = Lienzo(ancho=5.0, alto=2.2, t_rango=(0, 1), v_max=4.0, centro=(3.5, 0.0))
+        bos = bosque_f(P, periodograma_blanco(8, 100), MEDIDA, 2.2)
+        plano = P.curva([0, 1], [1, 1], SENAL, 4)
+        et_m = etiqueta("una sola muestra", MEDIDA, 0.55).move_to([3.5, -0.9, 0])
+        pa = perilla("trozos", AMBAR, 0.5).move_to([-1.6, -2.6, 0])
+        pb = perilla("duración", AMBAR, 0.5).move_to([1.6, -2.6, 0])
+        pa.aguja.put_start_and_end_on(pa.disco.get_center(), pa.disco.get_center() + UP * 0.42)
+        pb.aguja.put_start_and_end_on(pb.disco.get_center(), pb.disco.get_center() + UP * 0.42)
+        x = cruz(ROJO, 1.0).move_to([0, -2.4, 0])
+        interr = MathTex("?", color=AMBAR).scale(3.0).move_to([0, 0.4, 0])
+        Lc = Lienzo(ancho=8.0, alto=1.0, t_rango=(0, 16), v_max=2.6, centro=(0, 0.2))
+        izq = Lc.curva(np.linspace(0, 8, 150), 0.8 * serie(5, 300, 0.0)[:150], RUIDO, 2.6)
+        der = Lc.curva(np.linspace(8, 16, 150), 0.8 * serie(5, 300, 0.0)[150:], RUIDO, 2.6)
+        tij = tijera(TXT).scale(0.9).move_to([0, 1.5, 0])
+        prox = etiqueta("Próximo episodio", INK, 0.6).move_to([0, 1.7, 0])
+        a = self.palabra("Cortar", TXT, 1.8).move_to([0, 0.4, 0])
+        b = self.palabra("sin romper", AMBAR, 1.8).move_to([0, -1.2, 0])
+        with self.narrar("b1"):
+            self.en("finitos")
+            self.play(Create(T.base()), Create(traza_), FadeIn(marco), run_time=self.dur(0.7))
+            self.en("desenfocado")
+            self.play(Create(F.base()), Create(ver), Create(borrosa), FadeIn(et_v), run_time=self.dur(0.8))
+            self.en("tembloroso")
+            self.play(Create(P.base()), Create(plano), Create(bos), FadeIn(et_m), run_time=self.dur(0.8))
+            self.en("dos_cosas")
+            self.play(FadeIn(pa), FadeIn(pb), FadeIn(pa.aguja), FadeIn(pb.aguja), run_time=0.4)
+            self.pop(x)
+            self.en("queda")
+            self.corte()
+            self.pop(interr)
+            self.en("cortas")
+            self.play(FadeOut(interr), Create(izq), Create(der), run_time=0.3)
+            self.pop(tij)
+            self.play(izq.animate.shift(LEFT * 0.35), der.animate.shift(RIGHT * 0.35), run_time=0.4)
+            self.en("prox_ep")
+            self.corte()
+            self.play(FadeIn(prox), run_time=0.3)
+            self.en("proximo")
+            self.pop(a, b)
+        self.wait(1.0)
+        self.limpiar()
