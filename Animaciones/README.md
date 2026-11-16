@@ -85,6 +85,7 @@ la sección "Ejercicios Propuestos" de cada capítulo, que no se narra.
 | 11 | Densidad espectral de potencia | `Capitulo11_DensidadEspectral/` | 1087–1289 | `Cap 11 en profundidad.md` | `guion_base.md` escrito, **esperando la aprobación del usuario** |
 | 12 | Estimación de señales | `Capitulo12_EstimacionDeSenales/` | 1425–1695 | `Cap 12 en profundidad.md` | `guion_base.md` escrito, **esperando la aprobación del usuario** |
 | 13 | Detección de señales | `Capitulo13_DeteccionDeSenales/` | 1880–2122 | `Cap 13 en profundidad.md` | `guion_base.md` escrito, **esperando la aprobación del usuario** |
+| Especial | LoRa: del artículo a la radio (trabajo práctico) | `Especial_LoRa/` | no sale del apunte | artículo de Vangelista + `LoRa.ipynb` del TP + rama `lora-phy` | un episodio de 29 escenas (28:48); `guion.md` escrito y animado, render 1080p60 **con la voz sin red**, **esperando la aprobación del usuario** (texto ⭐ y voz real) |
 
 Cuando un capítulo tiene guion base, se le agrega aquí una subsección propia
 (`### Capítulo NN (Tema)`) con la tabla de episodios, igual que esta:
@@ -418,6 +419,34 @@ proyección.
   correcto es 4/9 = 0,444 (−3,52 dB), como dice la Parte 1.4. El guion usa 0,444.
 - Pronunciaciones a probar: Neyman-Pearson, Cauchy-Schwarz, Barker, Nyquist, Wiener,
   Bayes, «la función cu», «curva ROC», «miss», «chirp», «coseno alzado» (§9).
+
+### Especial: LoRa (trabajo práctico)
+
+Un solo episodio, fuera del orden de los capítulos: explica el artículo de Vangelista
+(«Frequency Shift Chirp Modulation: The LoRa Modulation», 2017), cómo lo implementa el cuaderno
+`LoRa.ipynb` del trabajo práctico (paquete `lora`) y la prueba con el ADALM-Pluto del laboratorio.
+**No tiene `guion_base.md`**: todo el texto es nuevo y está en el `guion.md` del episodio, que
+lista sus fuentes. No lo anuncia ningún cierre ni anuncia nada.
+
+| Episodio | Carpeta | Contenido | Estado |
+|---|---|---|---|
+| E1 · LoRa: del artículo a la radio | `Especial_LoRa/E1_Del_articulo_a_la_radio/` | Ec. 1 y 2, la letra pequeña de la Ec. 2 (dos pasadas por aliasing), ortogonalidad, receptor óptimo, Ec. 16 (deshacer el chirp + FFT), ganancia 2^SF, BER, FSK contra FSCM con eco, el factor de ensanchamiento como dial (velocidad contra SNR mínimo), preámbulo y detección (dos errores, Neyman-Pearson, falsas alarmas por minuto → umbral, el umbral en acción), coste y rendimiento según el largo de la plantilla, los tres detectores por dentro, el Pluto por dentro, el experimento, el FER medido contra el simulado y por qué la Ec. 2 sincroniza peor que el chirp de una pasada (picos laterales a medio símbolo) | `guion.md` con 29 escenas y momentos; escenas `s01`–`s29` animadas; render 1080p60 de 28:48 con 0 avisos, **hecho con la voz sin red** (mudo, tiempos estimados: la sesión no tenía salida a Azure ni a edge-tts). Especial: pasa a propósito de los 10 minutos. Falta: visto bueno del usuario a todo el texto ⭐, pronunciaciones de oído, render con la voz real (y repasar `ritmo.py`, controles y hojas con esos tiempos), visto bueno al mp4 (paso 15) |
+
+- Ejemplo que atraviesa el episodio: factor de ensanchamiento 7 (128 muestras), 125 kHz y **el
+  símbolo 20** (bits de peso 4 y 16; pico en la casilla 20). Detección y Pluto: factor 8, como el cuaderno.
+- Los números son del trabajo práctico, no inventados: las constantes `BER_*`, `FER*_*`, `ATEN_*`
+  y `TERMICO_*` de `comun/figuras_lora.py` salen de correr el paquete `lora` (semilla 0) y sus
+  capturas; `datos/captura_pluto.npz` es un recorte de una captura real del Pluto (SNR medido de
+  −13,7 dB). `datos/generar_datos.py <carpeta del TP>` los vuelve a calcular: **el cuaderno está en
+  desarrollo**, así que si cambian sus resultados hay que rehacerlos y revisar las cifras narradas
+  (escenas 14, 15, 17, 20 y 21).
+- La escena 08 cuenta el hallazgo del cuaderno (la Ec. 2 al pie de la letra barre de 0 a 2B y,
+  muestreada a B, da dos pasadas por símbolo). El cuaderno tiene un TODO de consultarlo con la
+  cátedra: si se decide «corregir» la modulación, esa escena y las rampas de la 07 se revisan.
+- Las siglas no se dicen (SF, FFT, BER, FER, SDR, AGC, FSK solo en pantalla). Pronunciaciones a
+  probar: LoRa, chirp, Vangelista, Pluto, Neyman-Pearson, kilohercios, megahercios.
+- No entró (y podría ser un segundo episodio): el documento «Identificación de picos de
+  sincronismo con el estimador LMMSE», porque el cuaderno todavía no lo implementa.
 
 ---
 
@@ -818,7 +847,8 @@ Animaciones/
 │   ├── sfx.py              efectos de sonido sintetizados con numpy
 │   ├── estilo.py           paleta, papeles de color, fuente, caja(), flecha(), ejes(), formula(), num()
 │   ├── iconos.py           pictogramas (personas, objetos, máquinas, marcas)
-│   └── figuras.py          piezas técnicas (curvas, densidades, espectros, bloques)
+│   ├── figuras.py          piezas técnicas (curvas, densidades, espectros, bloques)
+│   └── figuras_lora.py     piezas del especial de LoRa (módulo aparte, ver «Piezas técnicas»)
 ├── sfx/                    wav generados por sfx.py (se regeneran solos; ignorado en git)
 ├── musica/                 opcional: una pista de fondo (YouTube Audio Library); render.py la mezcla
 ├── voces_prueba/           scripts para elegir pronunciaciones de oído
@@ -961,6 +991,7 @@ archivo). **Cada pieza nueva se anota aquí**, con sus atributos.
 - **Capítulo 8, episodio 2** (al final de `figuras.py`): `CANAL8` (valores de la tabla del canal en `MathTex`), `puerta8(alto)` (`.marco`, `.pomo`), `PuntosErr8(centro, ancho, alto, n, semilla, desplaz)` (errores sueltos alrededor de una línea de cero: `.cero`, `.pts`, `y(v)`), `Nube8(centro, ancho, alto, n, semilla)` (nube y = x + ruido sobre ejes: `.ax`, `.etq`, `.pts`, `p(x, y)`, `rebanada(x, ancho)`, `en_rebanada(x, ancho)`) y `parabola8(centro, ancho, alto)` → `(curva, punto_minimo, p)` (U con el mínimo en el centro).
 - **Capítulo 9, episodio 1** (módulo aparte `comun/figuras_c9e1.py`; las escenas hacen `from comun.figuras_c9e1 import *`): `C0`/`C1` (magenta y azul de cada hipótesis), `P0`, `P1`, `CRUCE9` (= 1,42); `Campanas9(centro, ancho, alto, r_rango, v_max)` (lienzo de la medición r con las campanas de centros 0 y 2 y desvío 1: `f(mu, r, factor)`, `p(r, v)`, `campana(mu, factor, color)`, `area(mu, factor, desde, hasta)`, `solape()`, `eje(marcas)`, `regla(r)`, `punto(...)`, `segmento(...)`, `region(desde, hasta, color)`), `canal9` (como `canal7`, pero con «Canal» en mayúscula), `bit9(valor)`, `casilla9(texto, color)`, `casilla_h9(tex, texto, color)` y `rot_tex9(tex, texto, color)` (rótulos con subíndice en LaTeX: «H₀ · Se envió 0», «D₁ · Decir 1»), `ParBarras9` (dos barras a posteriori: `.barras`, `.valores`, `.rots`, `marco(i)`), `TablaReglas9` (las cuatro reglas: `.nombres`, `.detalles`, `.errores`, `.huecos`, `marco(i)`), `fila_bits9`, `pulsos9` (tren PAM), `garabato9` y `balanza9` (la `Balanza` con rótulos).
 - **Capítulo 9, episodio 3** (módulo aparte `comun/figuras_c9e3.py`; las escenas hacen `from comun.figuras_c9e3 import *`, que trae también lo del E1): `ETA9` (= 2,33), `LAMBDA`, `lrt9(eta, escala)` (la fórmula «Λ(r) ≷ η» en tres piezas) y `caja_lrt9(escala)` (enmarcada: `.f`, `.marco`); `CampanasS9` (`Campanas9` con desvío a elección: `fs(mu, s, r)`, `campana_s(mu, s, color)`, `area_s(...)`, `punto_s(...)`); `CurvaLambda9(origen, ancho, alto, r_rango, v_top)` (Λ(r) = e^(2r − 2) contra r: `.ejes`, `curva()`, `punto(r)`, `linea(eta)`, `corte(eta)`, `bajada(eta)`); `TablaNiveles9` (el detector de cinco niveles: `.cas`, `.encs`, `fila(k, valores, color)`, `rot(k, texto, color)`, `columna(i)`, `SIN`, `CON`, `COCIENTE`); íconos `monedero9(texto)`, `mochila9()` (`.cuerpo`), `fibra9()`, `detector9()` (`.aguja`, `centro()`), `cuaderno9()`, `ficha9(texto)`; `pulso_ruidoso9(...)` y `region_rara9(C, trozos)`. **Ojo**: en una `EscenaCurso` no usar el atributo `self.G` (es el guion).
+- **Especial de LoRa** (`comun/figuras_lora.py`, módulo aparte; las escenas hacen `from comun.figuras_lora import *`): señal copiada del paquete `lora` del trabajo práctico, `chirp_lora(s, M, L)` (Ec. 2), `chirp_una_pasada`, `deschirpear`, `casillas_fft` (Ec. 16), `ruido_complejo`, `recibido(s, snr_db)`, `preambulo_lora`, `correlacion_preambulo`; constantes `M7`, `S_EJEMPLO` (20), `BITS_EJEMPLO` y los números medidos `BER_*`, `FER3_*`, `FER_SIM*`, `ATEN_*`, `TERMICO_*`; `captura_pluto()` (recorte real del ADC y muestra de inicio de la trama); `PlanoTF(centro, ancho, alto, n, f_max)` (plano tiempo-frecuencia hecho con `Line`: `.marco`, `.rotulos`, `p(t, f)`, `rampa(s, i, M, color, grosor, pend, dur)`, `bajada`, `tono`, `salto`, `division`, `nivel`) y `trama_tf(P, i0, simbolos, M)` → (ocho chirps, dos y cuarto que bajan, datos); `CasillasFFT(valores, ...)` (barras de la FFT: `.base`, `.barras`, `.rots`, `x(q)`, `cima(q)`, `pie(q)`, `y(v)`, `pintar(q, color)`); `EjesXY(...)` (ejes con líneas, eje vertical logarítmico opcional: `.ejes`, `.guias`, `.marcas`, `.rots`, `.todo`, `p(x, y)`, `curva`, `punto`, `puntos`); `fila_bits(bits)` (`.cas`, `.nums`, `x(i)`), `bloque(txt, color)`, `fila_bloques(textos, colores)` → (cajas, flechas), `cota(a, b, texto, tex=)` (`.linea`, `.rot`); íconos `pluto()` (`.cuerpo`, `.ant_tx`, `.ant_rx`, `punta_tx()`, `punta_rx()`), `sensor_campo()` (`punta()`), `antena_simple()`, `cuaderno_lora()`, `oscilador()`, `onda_radio(a, b)` y `traza_ruidosa(L)`; para la detección, `senal_demo(n0, total, snr_db, semilla)` (trama de juguete con M = 64 y su T[k]), `umbral_demo(sigma2)`, `densidad_h1(t, lam)`, `area_bajo(pts, y0, color)` (cola rellena), `flecha_v(a, b)`, `insignia(n, color)`; `ganancia_eco(f)`; `Dial(centro, radio, sf)` (`.aguja`, `girar(sf)`); `peine_preambulo(corregida, M, n)` (parecido sin ruido de −3 a +3 símbolos, Ec. 2 o una pasada); y los números simulados para el vídeo: `FSK_SNR`, `FSCM_ECO`, `FSK_ECO`, `PDET_SNR`, `PDET`, `EXACTA_M8`, `TIEMPO_*`, `LN_PFA`, `SF_DIAL`, `SF_BPS`, `SF_SNR_MIN`, `CMP_SNR`, `CMP_FER_EC2`, `CMP_FER_CORR`, `CMP_M18`, `CMP_PLUTO_MEDIO`.
 - **Probar escenas sin vídeo**: `python -m manim -ql -s --disable_caching sNN_x.py Clase` (con `PYTHONPATH` = `Animaciones/`, desde la carpeta del episodio) corre la escena entera en modo salteado, en segundos, y escribe igual `media/informes/<Clase>.json` con atrasos, silencios y encimados (en ese modo Manim también avanza `renderer.time`). Sirve para dejar 0 avisos antes del borrador; no reemplaza las hojas de contacto.
 - **Capítulo 10, episodio 1** (al final de `figuras.py`): `serie(semilla, n, a)` (serie con
   memoria `a`, `a=0` ruido blanco), `traza(x, y, ...)`, `Lienzo` (mapa (t, v) → pantalla:
@@ -1169,6 +1200,11 @@ lo mismo que se oye.
   envolvente, no la pieza principal. Centrar a mano la pieza que importa.
 - Un `self.corte()` entre dos bloques deja la pantalla vacía hasta la primera marca del
   bloque siguiente (a veces 2–3 s): cortar **dentro** del bloque nuevo, en su primera marca.
+
+- **`always_redraw` y `permitir_encima`**: el objeto se crea de nuevo en cada cuadro, así que el atributo se pone **dentro** de la función que lo dibuja (`d.permitir_encima = True` antes del `return`); puesto una vez por fuera, se pierde en el primer cuadro.
+- **No animar la entrada de un `always_redraw` ni de un `Integer` con updater** (`Create`, `FadeIn`): si su familia cambia de un cuadro a otro (otra cantidad de puntos, otro número de cifras) Manim se cuelga o falla con «zip() argument 2 is shorter». Se entra con `self.add(obj)` y, si hace falta, un resaltado aparte.
+- **Exponente partido en piezas**: una llave no puede abrirse en una pieza de `MathTex` y cerrarse en otra, así que `e^{…}` no se puede construir término a término. Para animar por partes lo de dentro del exponente, escribirlo en línea con `\exp\!\Big( … \Big)` (escena 07 del especial de LoRa).
+- **En Linux** (el entorno de Windows de arriba no aplica): hacen falta `libpango1.0-dev` (para compilar ManimPango), `dvisvgm` y un LaTeX con `standalone` y `preview`; «Segoe UI» no existe y Pango la sustituye por la sans del sistema (los anchos de texto cambian un poco: dejar margen).
 
 ### Fórmulas y gráficas (propio de esta materia)
 - `MathTex` compila con LaTeX (MiKTeX): la primera vez de cada fórmula tarda;
